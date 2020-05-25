@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Proyecto DSWI</title>
+
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/redes_social.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("GStore", "Index", "Producto", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-right">
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesion</a></li>
+                    <li><a href="https://www.facebook.com/" target="_blank"><img style="width:30px" src="~/Content/Images/rs_fb.png" alt="rs_face" /></a></li>
+                    <li><a href="https://www.twitter.com/" target="_blank"><img style="width:30px" src="~/Content/Images/rs_tw.png" alt="rs_twit" /></a></li>
+                    <li><a href="https://web.whatsapp.com/" target="_blank"><img style="width:30px" src="~/Content/Images/rs_wpp.png" alt="rs_wpp" /></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Proyecto DSWI</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

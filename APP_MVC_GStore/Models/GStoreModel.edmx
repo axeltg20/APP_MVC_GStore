@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GameStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_Carrito">
+          <Key>
+            <PropertyRef Name="idCarrito" />
+          </Key>
+          <Property Name="idCarrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idprod" Type="int" />
+          <Property Name="cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_Categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomCategoria" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_ComprobantePago">
+          <Key>
+            <PropertyRef Name="idComprobante" />
+          </Key>
+          <Property Name="idComprobante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="NombreCli" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fechaCompra" Type="date" />
+          <Property Name="Destinatario" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TB_DetalleComprobante">
+          <Key>
+            <PropertyRef Name="numDetalle" />
+          </Key>
+          <Property Name="numDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idComprobante" Type="int" Nullable="false" />
+          <Property Name="idProducto" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="money" />
+          <Property Name="Cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_Direcciones">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+          </Key>
+          <Property Name="idDireccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomDireccion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="nomDistrito" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nomCiudad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_Producto">
+          <Key>
+            <PropertyRef Name="idProd" />
+          </Key>
+          <Property Name="idProd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomProd" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="descripcion" Type="varchar(max)" />
+          <Property Name="foto" Type="varchar" MaxLength="1024" />
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="celular" Type="varchar" MaxLength="9" />
+          <Property Name="email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="contra" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__TB_Carrit__idpro__4AB81AF0">
+          <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="0..1" />
+          <End Role="TB_Carrito" Type="Self.TB_Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Producto">
+              <PropertyRef Name="idProd" />
+            </Principal>
+            <Dependent Role="TB_Carrito">
+              <PropertyRef Name="idprod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Compro__idUsu__440B1D61">
+          <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
+          <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="TB_ComprobantePago">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Detall__idCom__46E78A0C">
+          <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="1" />
+          <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_ComprobantePago">
+              <PropertyRef Name="idComprobante" />
+            </Principal>
+            <Dependent Role="TB_DetalleComprobante">
+              <PropertyRef Name="idComprobante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Detall__idPro__47DBAE45">
+          <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="1" />
+          <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Producto">
+              <PropertyRef Name="idProd" />
+            </Principal>
+            <Dependent Role="TB_DetalleComprobante">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Direcc__idUsu__412EB0B6">
+          <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="0..1" />
+          <End Role="TB_Direcciones" Type="Self.TB_Direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="TB_Direcciones">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Produc__idCat__3A81B327">
+          <End Role="TB_Categoria" Type="Self.TB_Categoria" Multiplicity="1" />
+          <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Categoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="TB_Producto">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_CrearUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido" Type="varchar" Mode="In" />
+          <Parameter Name="celular" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="contra" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_InsertaProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nomProd" Type="varchar" Mode="In" />
+          <Parameter Name="precio" Type="money" Mode="In" />
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+          <Parameter Name="stock" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_InsertarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nomCategoria" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ListarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_Logueo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="contra" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="GameStoreModelStoreContainer">
+          <EntitySet Name="TB_Carrito" EntityType="Self.TB_Carrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_Categoria" EntityType="Self.TB_Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_ComprobantePago" EntityType="Self.TB_ComprobantePago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_DetalleComprobante" EntityType="Self.TB_DetalleComprobante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_Direcciones" EntityType="Self.TB_Direcciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_Producto" EntityType="Self.TB_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_Usuario" EntityType="Self.TB_Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TB_Carrit__idpro__4AB81AF0" Association="Self.FK__TB_Carrit__idpro__4AB81AF0">
+            <End Role="TB_Producto" EntitySet="TB_Producto" />
+            <End Role="TB_Carrito" EntitySet="TB_Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Compro__idUsu__440B1D61" Association="Self.FK__TB_Compro__idUsu__440B1D61">
+            <End Role="TB_Usuario" EntitySet="TB_Usuario" />
+            <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Detall__idCom__46E78A0C" Association="Self.FK__TB_Detall__idCom__46E78A0C">
+            <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
+            <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Detall__idPro__47DBAE45" Association="Self.FK__TB_Detall__idPro__47DBAE45">
+            <End Role="TB_Producto" EntitySet="TB_Producto" />
+            <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Direcc__idUsu__412EB0B6" Association="Self.FK__TB_Direcc__idUsu__412EB0B6">
+            <End Role="TB_Usuario" EntitySet="TB_Usuario" />
+            <End Role="TB_Direcciones" EntitySet="TB_Direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Produc__idCat__3A81B327" Association="Self.FK__TB_Produc__idCat__3A81B327">
+            <End Role="TB_Categoria" EntitySet="TB_Categoria" />
+            <End Role="TB_Producto" EntitySet="TB_Producto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GameStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TB_Carrito">
+          <Key>
+            <PropertyRef Name="idCarrito" />
+          </Key>
+          <Property Name="idCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idprod" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <NavigationProperty Name="TB_Producto" Relationship="Self.FK__TB_Carrit__idpro__4AB81AF0" FromRole="TB_Carrito" ToRole="TB_Producto" />
+        </EntityType>
+        <EntityType Name="TB_Categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomCategoria" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_Producto" Relationship="Self.FK__TB_Produc__idCat__3A81B327" FromRole="TB_Categoria" ToRole="TB_Producto" />
+        </EntityType>
+        <EntityType Name="TB_ComprobantePago">
+          <Key>
+            <PropertyRef Name="idComprobante" />
+          </Key>
+          <Property Name="idComprobante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="NombreCli" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCompra" Type="DateTime" Precision="0" />
+          <Property Name="Destinatario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_Usuario" Relationship="Self.FK__TB_Compro__idUsu__440B1D61" FromRole="TB_ComprobantePago" ToRole="TB_Usuario" />
+          <NavigationProperty Name="TB_DetalleComprobante" Relationship="Self.FK__TB_Detall__idCom__46E78A0C" FromRole="TB_ComprobantePago" ToRole="TB_DetalleComprobante" />
+        </EntityType>
+        <EntityType Name="TB_DetalleComprobante">
+          <Key>
+            <PropertyRef Name="numDetalle" />
+          </Key>
+          <Property Name="numDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idComprobante" Type="Int32" Nullable="false" />
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cantidad" Type="Int32" />
+          <NavigationProperty Name="TB_ComprobantePago" Relationship="Self.FK__TB_Detall__idCom__46E78A0C" FromRole="TB_DetalleComprobante" ToRole="TB_ComprobantePago" />
+          <NavigationProperty Name="TB_Producto" Relationship="Self.FK__TB_Detall__idPro__47DBAE45" FromRole="TB_DetalleComprobante" ToRole="TB_Producto" />
+        </EntityType>
+        <EntityType Name="TB_Direcciones">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+          </Key>
+          <Property Name="idDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomDireccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nomDistrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nomCiudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" />
+          <NavigationProperty Name="TB_Usuario" Relationship="Self.FK__TB_Direcc__idUsu__412EB0B6" FromRole="TB_Direcciones" ToRole="TB_Usuario" />
+        </EntityType>
+        <EntityType Name="TB_Producto">
+          <Key>
+            <PropertyRef Name="idProd" />
+          </Key>
+          <Property Name="idProd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomProd" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="foto" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TB_Carrito" Relationship="Self.FK__TB_Carrit__idpro__4AB81AF0" FromRole="TB_Producto" ToRole="TB_Carrito" />
+          <NavigationProperty Name="TB_Categoria" Relationship="Self.FK__TB_Produc__idCat__3A81B327" FromRole="TB_Producto" ToRole="TB_Categoria" />
+          <NavigationProperty Name="TB_DetalleComprobante" Relationship="Self.FK__TB_Detall__idPro__47DBAE45" FromRole="TB_Producto" ToRole="TB_DetalleComprobante" />
+        </EntityType>
+        <EntityType Name="TB_Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="celular" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contra" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_ComprobantePago" Relationship="Self.FK__TB_Compro__idUsu__440B1D61" FromRole="TB_Usuario" ToRole="TB_ComprobantePago" />
+          <NavigationProperty Name="TB_Direcciones" Relationship="Self.FK__TB_Direcc__idUsu__412EB0B6" FromRole="TB_Usuario" ToRole="TB_Direcciones" />
+        </EntityType>
+        <Association Name="FK__TB_Carrit__idpro__4AB81AF0">
+          <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="0..1" />
+          <End Role="TB_Carrito" Type="Self.TB_Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Producto">
+              <PropertyRef Name="idProd" />
+            </Principal>
+            <Dependent Role="TB_Carrito">
+              <PropertyRef Name="idprod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Produc__idCat__3A81B327">
+          <End Role="TB_Categoria" Type="Self.TB_Categoria" Multiplicity="1" />
+          <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Categoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="TB_Producto">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Compro__idUsu__440B1D61">
+          <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
+          <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="TB_ComprobantePago">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Detall__idCom__46E78A0C">
+          <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="1" />
+          <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_ComprobantePago">
+              <PropertyRef Name="idComprobante" />
+            </Principal>
+            <Dependent Role="TB_DetalleComprobante">
+              <PropertyRef Name="idComprobante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Detall__idPro__47DBAE45">
+          <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="1" />
+          <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Producto">
+              <PropertyRef Name="idProd" />
+            </Principal>
+            <Dependent Role="TB_DetalleComprobante">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Direcc__idUsu__412EB0B6">
+          <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="0..1" />
+          <End Role="TB_Direcciones" Type="Self.TB_Direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="TB_Direcciones">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameStoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_Carrito" EntityType="Self.TB_Carrito" />
+          <EntitySet Name="TB_Categoria" EntityType="Self.TB_Categoria" />
+          <EntitySet Name="TB_ComprobantePago" EntityType="Self.TB_ComprobantePago" />
+          <EntitySet Name="TB_DetalleComprobante" EntityType="Self.TB_DetalleComprobante" />
+          <EntitySet Name="TB_Direcciones" EntityType="Self.TB_Direcciones" />
+          <EntitySet Name="TB_Producto" EntityType="Self.TB_Producto" />
+          <EntitySet Name="TB_Usuario" EntityType="Self.TB_Usuario" />
+          <AssociationSet Name="FK__TB_Carrit__idpro__4AB81AF0" Association="Self.FK__TB_Carrit__idpro__4AB81AF0">
+            <End Role="TB_Producto" EntitySet="TB_Producto" />
+            <End Role="TB_Carrito" EntitySet="TB_Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Produc__idCat__3A81B327" Association="Self.FK__TB_Produc__idCat__3A81B327">
+            <End Role="TB_Categoria" EntitySet="TB_Categoria" />
+            <End Role="TB_Producto" EntitySet="TB_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Compro__idUsu__440B1D61" Association="Self.FK__TB_Compro__idUsu__440B1D61">
+            <End Role="TB_Usuario" EntitySet="TB_Usuario" />
+            <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Detall__idCom__46E78A0C" Association="Self.FK__TB_Detall__idCom__46E78A0C">
+            <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
+            <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Detall__idPro__47DBAE45" Association="Self.FK__TB_Detall__idPro__47DBAE45">
+            <End Role="TB_Producto" EntitySet="TB_Producto" />
+            <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Direcc__idUsu__412EB0B6" Association="Self.FK__TB_Direcc__idUsu__412EB0B6">
+            <End Role="TB_Usuario" EntitySet="TB_Usuario" />
+            <End Role="TB_Direcciones" EntitySet="TB_Direcciones" />
+          </AssociationSet>
+          <FunctionImport Name="usp_CrearUsuario">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="celular" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="contra" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertaProducto">
+            <Parameter Name="nomProd" Mode="In" Type="String" />
+            <Parameter Name="precio" Mode="In" Type="Decimal" />
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="stock" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertarCategoria">
+            <Parameter Name="nomCategoria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ListarProducto" ReturnType="Collection(GameStoreModel.usp_ListarProducto_Result)" />
+          <FunctionImport Name="usp_Logueo" ReturnType="Collection(GameStoreModel.usp_Logueo_Result)">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="contra" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="usp_ListarProducto_Result">
+          <Property Type="Int32" Name="idProd" Nullable="false" />
+          <Property Type="String" Name="nomProd" Nullable="false" MaxLength="70" />
+          <Property Type="Decimal" Name="precio" Nullable="false" Precision="19" />
+          <Property Type="String" Name="nomCategoria" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="stock" Nullable="false" />
+          <Property Type="Int32" Name="estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_Logueo_Result">
+          <Property Type="String" Name="email" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="contra" Nullable="false" MaxLength="15" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GameStoreModelStoreContainer" CdmEntityContainer="GameStoreEntities">
+          <EntitySetMapping Name="TB_Carrito">
+            <EntityTypeMapping TypeName="GameStoreModel.TB_Carrito">
+              <MappingFragment StoreEntitySet="TB_Carrito">
+                <ScalarProperty Name="idCarrito" ColumnName="idCarrito" />
+                <ScalarProperty Name="idprod" ColumnName="idprod" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Categoria">
+            <EntityTypeMapping TypeName="GameStoreModel.TB_Categoria">
+              <MappingFragment StoreEntitySet="TB_Categoria">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_ComprobantePago">
+            <EntityTypeMapping TypeName="GameStoreModel.TB_ComprobantePago">
+              <MappingFragment StoreEntitySet="TB_ComprobantePago">
+                <ScalarProperty Name="idComprobante" ColumnName="idComprobante" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="NombreCli" ColumnName="NombreCli" />
+                <ScalarProperty Name="fechaCompra" ColumnName="fechaCompra" />
+                <ScalarProperty Name="Destinatario" ColumnName="Destinatario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_DetalleComprobante">
+            <EntityTypeMapping TypeName="GameStoreModel.TB_DetalleComprobante">
+              <MappingFragment StoreEntitySet="TB_DetalleComprobante">
+                <ScalarProperty Name="numDetalle" ColumnName="numDetalle" />
+                <ScalarProperty Name="idComprobante" ColumnName="idComprobante" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Direcciones">
+            <EntityTypeMapping TypeName="GameStoreModel.TB_Direcciones">
+              <MappingFragment StoreEntitySet="TB_Direcciones">
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="nomDireccion" ColumnName="nomDireccion" />
+                <ScalarProperty Name="nomDistrito" ColumnName="nomDistrito" />
+                <ScalarProperty Name="nomCiudad" ColumnName="nomCiudad" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Producto">
+            <EntityTypeMapping TypeName="GameStoreModel.TB_Producto">
+              <MappingFragment StoreEntitySet="TB_Producto">
+                <ScalarProperty Name="idProd" ColumnName="idProd" />
+                <ScalarProperty Name="nomProd" ColumnName="nomProd" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Usuario">
+            <EntityTypeMapping TypeName="GameStoreModel.TB_Usuario">
+              <MappingFragment StoreEntitySet="TB_Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contra" ColumnName="contra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_CrearUsuario" FunctionName="GameStoreModel.Store.usp_CrearUsuario" />
+          <FunctionImportMapping FunctionImportName="usp_InsertaProducto" FunctionName="GameStoreModel.Store.usp_InsertaProducto" />
+          <FunctionImportMapping FunctionImportName="usp_InsertarCategoria" FunctionName="GameStoreModel.Store.usp_InsertarCategoria" />
+          <FunctionImportMapping FunctionImportName="usp_ListarProducto" FunctionName="GameStoreModel.Store.usp_ListarProducto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GameStoreModel.usp_ListarProducto_Result">
+                <ScalarProperty Name="idProd" ColumnName="idProd" />
+                <ScalarProperty Name="nomProd" ColumnName="nomProd" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Logueo" FunctionName="GameStoreModel.Store.usp_Logueo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GameStoreModel.usp_Logueo_Result">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contra" ColumnName="contra" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
