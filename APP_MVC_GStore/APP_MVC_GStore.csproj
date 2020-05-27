@@ -130,9 +130,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EncriptarContra.cs" />
     <Compile Include="Models\GStoreModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -148,6 +150,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GStoreModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegistroUsuario.cs" />
     <Compile Include="Models\TB_Carrito.cs">
       <DependentUpon>GStoreModel.tt</DependentUpon>
     </Compile>
@@ -239,6 +242,7 @@
     <Content Include="Views\Producto\Details.cshtml" />
     <Content Include="Views\Producto\Edit.cshtml" />
     <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Registro\Registrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

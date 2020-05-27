@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GameStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GameStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TB_Carrito">
           <Key>
             <PropertyRef Name="idCarrito" />
@@ -73,9 +73,10 @@
           <Property Name="apellido" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="celular" Type="varchar" MaxLength="9" />
           <Property Name="email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="emailverficiado" Type="bit" />
           <Property Name="contra" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <Association Name="FK__TB_Carrit__idpro__4AB81AF0">
+        <Association Name="FK__TB_Carrit__idpro__4BAC3F29">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="0..1" />
           <End Role="TB_Carrito" Type="Self.TB_Carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -87,7 +88,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Compro__idUsu__440B1D61">
+        <Association Name="FK__TB_Compro__idUsu__44FF419A">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -99,7 +100,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idCom__46E78A0C">
+        <Association Name="FK__TB_Detall__idCom__47DBAE45">
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,7 +112,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idPro__47DBAE45">
+        <Association Name="FK__TB_Detall__idPro__48CFD27E">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -123,7 +124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Direcc__idUsu__412EB0B6">
+        <Association Name="FK__TB_Direcc__idUsu__4222D4EF">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="0..1" />
           <End Role="TB_Direcciones" Type="Self.TB_Direcciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -176,23 +177,23 @@
           <EntitySet Name="TB_Direcciones" EntityType="Self.TB_Direcciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Producto" EntityType="Self.TB_Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Usuario" EntityType="Self.TB_Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__TB_Carrit__idpro__4AB81AF0" Association="Self.FK__TB_Carrit__idpro__4AB81AF0">
+          <AssociationSet Name="FK__TB_Carrit__idpro__4BAC3F29" Association="Self.FK__TB_Carrit__idpro__4BAC3F29">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_Carrito" EntitySet="TB_Carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Compro__idUsu__440B1D61" Association="Self.FK__TB_Compro__idUsu__440B1D61">
+          <AssociationSet Name="FK__TB_Compro__idUsu__44FF419A" Association="Self.FK__TB_Compro__idUsu__44FF419A">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idCom__46E78A0C" Association="Self.FK__TB_Detall__idCom__46E78A0C">
+          <AssociationSet Name="FK__TB_Detall__idCom__47DBAE45" Association="Self.FK__TB_Detall__idCom__47DBAE45">
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idPro__47DBAE45" Association="Self.FK__TB_Detall__idPro__47DBAE45">
+          <AssociationSet Name="FK__TB_Detall__idPro__48CFD27E" Association="Self.FK__TB_Detall__idPro__48CFD27E">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Direcc__idUsu__412EB0B6" Association="Self.FK__TB_Direcc__idUsu__412EB0B6">
+          <AssociationSet Name="FK__TB_Direcc__idUsu__4222D4EF" Association="Self.FK__TB_Direcc__idUsu__4222D4EF">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_Direcciones" EntitySet="TB_Direcciones" />
           </AssociationSet>
@@ -201,8 +202,7 @@
             <End Role="TB_Producto" EntitySet="TB_Producto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GameStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -287,6 +287,7 @@
           <Property Name="contra" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TB_ComprobantePago" Relationship="Self.FK__TB_Compro__idUsu__440B1D61" FromRole="TB_Usuario" ToRole="TB_ComprobantePago" />
           <NavigationProperty Name="TB_Direcciones" Relationship="Self.FK__TB_Direcc__idUsu__412EB0B6" FromRole="TB_Usuario" ToRole="TB_Direcciones" />
+          <Property Name="emailverficiado" Type="Boolean" />
         </EntityType>
         <Association Name="FK__TB_Carrit__idpro__4AB81AF0">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="0..1" />
@@ -406,7 +407,7 @@
             <Parameter Name="stock" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_InsertarCategoria">
-            <Parameter Name="nomCategoria" Mode="In" Type="String" />
+          <Parameter Name="nomCategoria" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_ListarProducto" ReturnType="Collection(GameStoreModel.usp_ListarProducto_Result)" />
           <FunctionImport Name="usp_Logueo" ReturnType="Collection(GameStoreModel.usp_Logueo_Result)">
@@ -500,6 +501,7 @@
           <EntitySetMapping Name="TB_Usuario">
             <EntityTypeMapping TypeName="GameStoreModel.TB_Usuario">
               <MappingFragment StoreEntitySet="TB_Usuario">
+                <ScalarProperty Name="emailverficiado" ColumnName="emailverficiado" />
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />

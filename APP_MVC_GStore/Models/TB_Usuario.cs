@@ -27,6 +27,7 @@ namespace APP_MVC_GStore.Models
         public string celular { get; set; }
         public string email { get; set; }
         public string contra { get; set; }
+        public Nullable<bool> emailverficiado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TB_ComprobantePago> TB_ComprobantePago { get; set; }
