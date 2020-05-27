@@ -49,7 +49,7 @@ namespace APP_MVC_GStore.Controllers
       
 
 
-        
+        //Ingresar
         public ActionResult Ingresar(string email, string contra)
                
         {
