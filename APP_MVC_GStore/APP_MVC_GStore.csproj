@@ -52,6 +52,9 @@
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NuGet.Frameworks, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\NuGet.Frameworks.5.7.0-preview.1.6592\lib\net40\NuGet.Frameworks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -242,6 +245,7 @@
     <Content Include="Views\Producto\Details.cshtml" />
     <Content Include="Views\Producto\Edit.cshtml" />
     <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Registro\Ingresar.cshtml" />
     <Content Include="Views\Registro\Registrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
