@@ -6,11 +6,11 @@ using System.Web;
 
 namespace APP_MVC_GStore.Models
 {
-    public class EncriptarContra
+    public static class EncriptarContra
     {
-        public static string textToEncrypt(string paasWord)
+        public static string textToEncrypt(string passWord)
         {
-            return Convert.ToBase64String(System.Security.Cryptography.SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(paasWord)));
+            return Convert.ToBase64String(System.Security.Cryptography.SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(passWord)));
         }
     }
 }
