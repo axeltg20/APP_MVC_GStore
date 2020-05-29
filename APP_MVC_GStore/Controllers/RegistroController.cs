@@ -25,21 +25,28 @@ namespace APP_MVC_GStore.Controllers
         [HttpPost]
         public ActionResult Registrar(string nombre, string apellido, string email, string contra)
         {
-            /*Email not verified on registration time*/
-            //user.emailverficiado = false;
-            /*It Generar unique code*/
-            //user.codigoactivacion = Guid.NewGuid();
-            /*Cifrado de contraseña*/
-            /*user.contra = APP_MVC_GStore.Models.EncriptarContra.textToEncrypt(user.contra);
+            
+            /*It Generar unique code
+            user.codigoactivacion = Guid.NewGuid();
             db.TB_Usuario.Add(user);
             db.SaveChanges();
             return View();*/
+
             ViewBag.nombre = nombre;
             ViewBag.apellido = apellido;
             ViewBag.email = email;
             ViewBag.contra = contra;
             if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(apellido) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(contra))
-            {
+            {   /*Detectar correos existentes*/
+                var existe = EmailExistente(email);
+                if (existe)
+                {
+                    /*Crear metodo de retorno en caso encuentre correos registrados*/
+                    ModelState.AddModelError("EmailExists", "Email ya registrado");
+                    return View("Registrar");
+                }
+                /*Cifrado de contraseña*/
+                contra = APP_MVC_GStore.Models.EncriptarContra.textToEncrypt(contra);
                 var registrar = db.usp_CrearUsuario(nombre, apellido, email, contra);
                 return RedirectToAction("Ingresar", "Registro");
 
@@ -49,9 +56,8 @@ namespace APP_MVC_GStore.Controllers
       
 
 
-        //Ingresar usuario
+        /*Ingresar usuario*/
         public ActionResult Ingresar(string email, string contra)
-               
         {
             ViewBag.email = email;
             ViewBag.contra = contra;
@@ -64,6 +70,13 @@ namespace APP_MVC_GStore.Controllers
 
             return View();
         }
-     }
+
+        /*Detector de correos existentes*/
+        public bool EmailExistente(string correo)
+        {
+            var IsCheck = db.TB_Usuario.Where(x => x.email == correo).FirstOrDefault();
+            return IsCheck != null;
+        }
+    }
 
     }
