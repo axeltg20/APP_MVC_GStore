@@ -77,7 +77,7 @@
           <Property Name="codigoactivacion" Type="uniqueidentifier" />
           <Property Name="contra" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <Association Name="FK__TB_Carrit__idpro__398D8EEE">
+        <Association Name="FK__TB_Carrit__idpro__4CA06362">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="0..1" />
           <End Role="TB_Carrito" Type="Self.TB_Carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -89,7 +89,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Compro__idUsu__32E0915F">
+        <Association Name="FK__TB_Compro__idUsu__45F365D3">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -101,7 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idCom__35BCFE0A">
+        <Association Name="FK__TB_Detall__idCom__48CFD27E">
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -113,7 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idPro__36B12243">
+        <Association Name="FK__TB_Detall__idPro__49C3F6B7">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -125,7 +125,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Direcc__idUsu__300424B4">
+        <Association Name="FK__TB_Direcc__idUsu__4316F928">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="0..1" />
           <End Role="TB_Direcciones" Type="Self.TB_Direcciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -137,7 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Produc__idCat__276EDEB3">
+        <Association Name="FK__TB_Produc__idCat__3A81B327">
           <End Role="TB_Categoria" Type="Self.TB_Categoria" Multiplicity="1" />
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -153,6 +153,7 @@
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="apellido" Type="varchar" Mode="In" />
           <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="emailverif" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="contra" Type="varchar" Mode="In" />
         </Function>
         <Function Name="usp_InsertaProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -177,27 +178,27 @@
           <EntitySet Name="TB_Direcciones" EntityType="Self.TB_Direcciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Producto" EntityType="Self.TB_Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Usuario" EntityType="Self.TB_Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__TB_Carrit__idpro__398D8EEE" Association="Self.FK__TB_Carrit__idpro__398D8EEE">
+          <AssociationSet Name="FK__TB_Carrit__idpro__4CA06362" Association="Self.FK__TB_Carrit__idpro__4CA06362">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_Carrito" EntitySet="TB_Carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Compro__idUsu__32E0915F" Association="Self.FK__TB_Compro__idUsu__32E0915F">
+          <AssociationSet Name="FK__TB_Compro__idUsu__45F365D3" Association="Self.FK__TB_Compro__idUsu__45F365D3">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idCom__35BCFE0A" Association="Self.FK__TB_Detall__idCom__35BCFE0A">
+          <AssociationSet Name="FK__TB_Detall__idCom__48CFD27E" Association="Self.FK__TB_Detall__idCom__48CFD27E">
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idPro__36B12243" Association="Self.FK__TB_Detall__idPro__36B12243">
+          <AssociationSet Name="FK__TB_Detall__idPro__49C3F6B7" Association="Self.FK__TB_Detall__idPro__49C3F6B7">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Direcc__idUsu__300424B4" Association="Self.FK__TB_Direcc__idUsu__300424B4">
+          <AssociationSet Name="FK__TB_Direcc__idUsu__4316F928" Association="Self.FK__TB_Direcc__idUsu__4316F928">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_Direcciones" EntitySet="TB_Direcciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Produc__idCat__276EDEB3" Association="Self.FK__TB_Produc__idCat__276EDEB3">
+          <AssociationSet Name="FK__TB_Produc__idCat__3A81B327" Association="Self.FK__TB_Produc__idCat__3A81B327">
             <End Role="TB_Categoria" EntitySet="TB_Categoria" />
             <End Role="TB_Producto" EntitySet="TB_Producto" />
           </AssociationSet>
@@ -398,6 +399,7 @@
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="apellido" Mode="In" Type="String" />
             <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="emailverif" Mode="In" Type="Guid" />
             <Parameter Name="contra" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_InsertaProducto">

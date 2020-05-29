@@ -44,7 +44,7 @@ create table TB_Usuario
 	idUsuario int primary key identity,
 	nombre varchar(30) not null,
 	apellido varchar(20) not null,
-	celular varchar(9) default('999999999'),
+	celular varchar(9),
 	email varchar(250) not null,
 	emailverficiado bit DEFAULT(0),
 	codigoactivacion uniqueidentifier,
@@ -134,19 +134,21 @@ begin
 end
 go
 
-create proc usp_CrearUsuario
+create or alter proc usp_CrearUsuario
 	@nombre varchar(30),
 	@apellido varchar(20),
 	@email varchar(250),
+	@emailverif uniqueidentifier,
 	@contra varchar(15)
 as
 begin 
-	insert into TB_Usuario(nombre, apellido, email, contra)
-	values(@nombre, @apellido, @email, @contra)
+	insert into TB_Usuario(nombre, apellido, email, codigoactivacion, contra)
+	values(@nombre, @apellido, @email, @emailverif,@contra)
 end
 go
 
-exec usp_CrearUsuario 'admin', 'sote', 'admin@gmail.com', 'admin'
+INSERT INTO TB_Usuario VALUES('admin', 'sote', null,'admin@gmail.com', null, null, 'admin')
+GO
 exec usp_InsertarCategoria 'Videojuegos'
 exec usp_InsertarCategoria 'Consolas'
 exec usp_InsertarCategoria 'Procesadores'
@@ -154,7 +156,6 @@ exec usp_InsertarCategoria 'Tarjetas de video'
 exec usp_InsertaProducto 'RTX 2080 Ti', 5000, 4, 10
 exec usp_InsertaProducto 'Intel Core i9 9900k', 3400, 3, 10
 exec usp_ListarProducto
-exec usp_Logueo 'admin@gmail.com', 'admin'
 select * from TB_Usuario
 select * from TB_Categoria
 

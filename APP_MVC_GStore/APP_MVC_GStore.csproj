@@ -248,6 +248,8 @@
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Registro\Ingresar.cshtml" />
     <Content Include="Views\Registro\Registrar.cshtml" />
+    <Content Include="Views\Registro\RegistroConfirmado.cshtml" />
+    <Content Include="Views\Registro\VerificacionUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
