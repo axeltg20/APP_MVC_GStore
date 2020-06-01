@@ -26,7 +26,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Registrarse", "Registrar", "Registro")</li>
-                    <li>@Html.ActionLink("Iniciar Sesion", "Ingresar", "Registro")</li>
+                    <li id="logueo"><a>Iniciar sesion</a></li>
                     <li><a href="https://www.facebook.com/" target="_blank"><img style="width:30px" src="~/Content/Images/rs_fb.png" alt="rs_face" /></a></li>
                     <li><a href="https://www.twitter.com/" target="_blank"><img style="width:30px" src="~/Content/Images/rs_tw.png" alt="rs_twit" /></a></li>
                     <li><a href="https://web.whatsapp.com/" target="_blank"><img style="width:30px" src="~/Content/Images/rs_wpp.png" alt="rs_wpp" /></a></li>
@@ -35,16 +35,63 @@
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Proyecto DSWI</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Proyecto DSWI</p>
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+
+
+
+
+<div class="modal fade" id="myModal" style="position: absolute">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Agregar al Carrito</h3>
+            </div>
+            <div class="modal-body">
+                <form action="/Registro/Ingresar">
+                    <div class="form-group">
+                        <label>Email: </label>
+                        <input type="text" name="email" value=@ViewBag.email />
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña: </label>
+                        <input type="password" name="contra" value=@ViewBag.contra />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Ingresar" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="~/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#logueo").click(function () {
+            $("#myModal").show();
+        });
+    });
+
+
+</script>
+

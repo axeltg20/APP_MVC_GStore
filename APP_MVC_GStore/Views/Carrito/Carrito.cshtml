@@ -1,0 +1,116 @@
+﻿@model IEnumerable<APP_MVC_GStore.Models.TB_Producto>
+
+@{
+    ViewBag.Title = "Carrito";
+}
+
+<h2>Carrito</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="tabla">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nomProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.foto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TB_Categoria.nomCategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stock)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomProd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.foto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TB_Categoria.nomCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+            <td>
+                <a href="#" class="btn btn-success" id=@item.idProd>Comprar YA!</a>
+            </td>
+            <td>
+                <a href="#" class="btn btn-danger" id="Acarrito">Agregar al carrito</a>
+            </td>
+            @*<td>
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
+
+</table>
+
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Agregar al Carrito</h3>
+            </div>
+            <div class="modal-body">
+                @*
+                <strong>Producto:</strong>
+                <dt>
+                    @Html.DisplayNameFor(model => model.nomProd)
+                </dt>
+
+                <dd>
+                    @Html.DisplayForModel(Model => M)
+                </dd>
+                <br />*@
+                <strong>Ingrese cantidad del producto :</strong>
+                <input type="text" name="cantidad" value="" />
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-success">Agregar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="~/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#tabla").each(function () {
+
+        $("#Acarrito").click(function () {
+
+                $("#myModal").modal('show');
+                 });
+        });
+        
+     });
+
+</script>

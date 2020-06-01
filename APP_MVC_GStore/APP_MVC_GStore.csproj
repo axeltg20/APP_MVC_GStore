@@ -131,6 +131,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
@@ -185,6 +186,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BD\GStore.sql" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-grid.css" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-grid.min.css" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-reboot.css" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-reboot.min.css" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap.css" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap.min.css" />
+    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.bundle.js" />
+    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.bundle.min.js" />
+    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.js" />
+    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -216,6 +227,16 @@
     <Content Include="Models\GStoreModel.edmx.diagram">
       <DependentUpon>GStoreModel.edmx</DependentUpon>
     </Content>
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-grid.css.map" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-reboot.css.map" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap.css.map" />
+    <Content Include="bootstrap-4.5.0-dist\css\bootstrap.min.css.map" />
+    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.bundle.js.map" />
+    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.js.map" />
+    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -250,6 +271,7 @@
     <Content Include="Views\Registro\Registrar.cshtml" />
     <Content Include="Views\Registro\RegistroConfirmado.cshtml" />
     <Content Include="Views\Registro\VerificacionUsuario.cshtml" />
+    <Content Include="Views\Carrito\Carrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
