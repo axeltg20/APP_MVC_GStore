@@ -54,7 +54,7 @@ namespace APP_MVC_GStore.Controllers
             {
                 db.TB_Producto.Add(tB_Producto);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Carrito", "Carrito");
             }
 
             ViewBag.idCategoria = new SelectList(db.TB_Categoria, "idCategoria", "nomCategoria", tB_Producto.idCategoria);
