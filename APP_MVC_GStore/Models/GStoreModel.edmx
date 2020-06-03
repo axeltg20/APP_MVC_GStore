@@ -149,6 +149,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="usp_AgregarCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idProd" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_CrearUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="apellido" Type="varchar" Mode="In" />
@@ -416,6 +420,10 @@
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="contra" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="usp_AgregarCarrito">
+            <Parameter Name="idProd" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="usp_ListarProducto_Result">
           <Property Type="Int32" Name="idProd" Nullable="false" />
@@ -537,6 +545,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_AgregarCarrito" FunctionName="GameStoreModel.Store.usp_AgregarCarrito" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

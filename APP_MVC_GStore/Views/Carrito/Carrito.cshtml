@@ -12,6 +12,9 @@
 <table class="table" id="tabla">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.idProd)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.nomProd)
         </th>
         <th>
@@ -34,83 +37,78 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomProd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.foto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TB_Categoria.nomCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.stock)
-            </td>
-            <td>
-                <a href="#" class="btn btn-success" id=@item.idProd>Comprar YA!</a>
-            </td>
-            <td>
-                <a href="#" class="btn btn-danger" id="Acarrito">Agregar al carrito</a>
-            </td>
-            @*<td>
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>*@
-        </tr>
+<tr>
+    <td class="producto">
+        @Html.DisplayFor(modelItem => item.nomProd)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.precio)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.descripcion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.foto)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TB_Categoria.nomCategoria)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.stock)
+    </td>
+    <td>
+        <a href="#" class="btn btn-success" id=@item.idProd>Comprar YA!</a>
+    </td>
+    <td>
+        <a href="#" class="btn btn-danger" id="Acarrito">Agregar al carrito</a>
+    </td>
+    @*<td>
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+</tr>
     }
 
 </table>
 
-
-
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a href="#" class="close" data-dismiss="modal">&times;</a>
-                <h3 class="modal-title">Agregar al Carrito</h3>
-            </div>
-            <div class="modal-body">
-                @*
-                <strong>Producto:</strong>
-                <dt>
-                    @Html.DisplayNameFor(model => model.nomProd)
-                </dt>
-
-                <dd>
-                    @Html.DisplayForModel(Model => M)
-                </dd>
-                <br />*@
-                <strong>Ingrese cantidad del producto :</strong>
-                <input type="text" name="cantidad" value="" />
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-success">Agregar</a>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Agregar al Carrito</h3>
+                </div>
+                <div class="modal-body">
+                    <strong>Producto:</strong>
+                    <strong id="nomProducto">
+                    </strong>
+                    <br />
+                    <strong>Ingrese cantidad del producto :</strong>
+                    <input type="text" name="cantidad" value="" />
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-success">Agregar</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="~/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
 
-    $(document).ready(function () {
+        $(document).ready(function () {
+            var nombre = "";
+           
+            $(".btn-danger").click(function () {
 
-        $("#tabla").each(function () {
-
-        $("#Acarrito").click(function () {
-
+                $(this).parents("tr").find(".producto").each(function () {
+                    nombre = $(this).html() + "\n";
+                    $("#nomProducto").text(nombre);
+                });
                 $("#myModal").modal('show');
-                 });
-        });
-        
-     });
 
-</script>
+             });
+         });
+
+    </script>
+

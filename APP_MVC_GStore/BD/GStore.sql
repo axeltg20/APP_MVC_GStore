@@ -134,6 +134,16 @@ begin
 end
 go
 
+create proc usp_AgregarCarrito
+@idProd int,
+@cantidad int
+as
+begin
+	insert into TB_Carrito(idprod, cantidad) values(@idProd, @cantidad)
+end
+go
+
+
 create or alter proc usp_CrearUsuario
 	@nombre varchar(30),
 	@apellido varchar(20),
@@ -146,6 +156,8 @@ begin
 	values(@nombre, @apellido, @email, @emailverif,@contra)
 end
 go
+
+
 
 INSERT INTO TB_Usuario VALUES('admin', 'sote', null,'admin@gmail.com', null, null, 'admin')
 GO

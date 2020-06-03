@@ -107,5 +107,18 @@ namespace APP_MVC_GStore.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Logueo_Result>("usp_Logueo", emailParameter, contraParameter);
         }
+    
+        public virtual int usp_AgregarCarrito(Nullable<int> idProd, Nullable<int> cantidad)
+        {
+            var idProdParameter = idProd.HasValue ?
+                new ObjectParameter("idProd", idProd) :
+                new ObjectParameter("idProd", typeof(int));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("cantidad", cantidad) :
+                new ObjectParameter("cantidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_AgregarCarrito", idProdParameter, cantidadParameter);
+        }
     }
 }
