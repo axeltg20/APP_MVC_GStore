@@ -133,6 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Global.asax.cs">
@@ -154,6 +155,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GStoreModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginUsuario.cs" />
     <Compile Include="Models\RegistroUsuario.cs" />
     <Compile Include="Models\TB_Carrito.cs">
       <DependentUpon>GStoreModel.tt</DependentUpon>
@@ -252,6 +254,9 @@
     <Content Include="Views\Registro\RegistroConfirmado.cshtml" />
     <Content Include="Views\Registro\VerificacionUsuario.cshtml" />
     <Content Include="Views\Carrito\Carrito.cshtml" />
+    <Content Include="Views\Login\Ingresar.cshtml" />
+    <Content Include="Views\Login\Seguridad.cshtml" />
+    <Content Include="Views\Registro\Seguridad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

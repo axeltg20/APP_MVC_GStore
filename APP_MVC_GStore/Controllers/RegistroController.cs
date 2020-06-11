@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Runtime.Serialization;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace APP_MVC_GStore.Controllers
 {
@@ -63,21 +64,42 @@ namespace APP_MVC_GStore.Controllers
             }
             return View();
         }
-      
+
 
 
         /*Ingresar usuario*/
-        public ActionResult Ingresar(string email, string contra)
+        public ActionResult Ingresar()
         {
-            ViewBag.email = email;
-            ViewBag.contra = contra;
-            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(contra))
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Ingresar(LoginUsuario login)
+        {
+            string con = APP_MVC_GStore.Models.EncriptarContra.textToEncrypt(login.Password);
+            //Verificar ingreso de datos
+            bool Isvalid = db.TB_Usuario.Any(x => x.email == login.Correo && x.emailverficiado == true && x.contra == con); ;
+            //bool Isvalid = db.TB_Usuario.Any(x => x.email == login.Correo && x.contra == login.Password);
+            if (Isvalid)
             {
-                var logueo = db.usp_Logueo(email, contra);
-                return RedirectToAction("Index", "Producto");
-
+                int timeout = login.Rememberme ? 60 : 5; // Timeout in minutes, 60 = 1 hour.  
+                var ticket = new FormsAuthenticationTicket(login.Correo, false, timeout);
+                string encrypted = FormsAuthentication.Encrypt(ticket);
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                cookie.Expires = System.DateTime.Now.AddMinutes(timeout);
+                cookie.HttpOnly = true;
+                Response.Cookies.Add(cookie);
+                return RedirectToAction("Seguridad", "Registro");
             }
+            else
+            {
+                ModelState.AddModelError("", "Los datos ingresados son incorrectos, intente nuevamente.");
+            }
+            return View();
+        }
 
+        public ActionResult Seguridad()
+        {
             return View();
         }
 

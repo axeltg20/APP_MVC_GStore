@@ -159,7 +159,7 @@ go
 
 
 
-INSERT INTO TB_Usuario VALUES('admin', 'sote', null,'admin@gmail.com', null, null, 'admin')
+INSERT INTO TB_Usuario VALUES('admin', 'sote', null,'admin@gmail.com', 1, null, 'admin')
 GO
 exec usp_InsertarCategoria 'Videojuegos'
 exec usp_InsertarCategoria 'Consolas'

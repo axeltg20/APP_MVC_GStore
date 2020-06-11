@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Seguridad";
+}
+
+<h2>Bienvenido!</h2>
+
+
+@if (Request.IsAuthenticated)
+{
+    <a href='@Url.Action("Logout", "Register")' onclick='navigate(this.href);'>
+        <input style="float: right;" type="button" value='Cerrar Sesión' />
+    </a>
+}  
