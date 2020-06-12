@@ -146,6 +146,14 @@ EXEC usp_Admin_EliminarProducto 6
 GO
 
 /*Procedimientos Almacenados*/
+
+CREATE OR ALTER PROC usp_ListarCategoria
+AS
+BEGIN
+	SELECT * FROM TB_Categoria
+END
+GO
+
 create proc usp_InsertaProducto
 @nomProd varchar(50),
 @precio money, 
