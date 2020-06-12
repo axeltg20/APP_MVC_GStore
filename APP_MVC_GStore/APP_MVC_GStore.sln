@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APP_MVC_GStore", "APP_MVC_GStore.csproj", "{5AD08F4E-8260-44C4-A1DD-BA5D4FBB1DF8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3865234D-1E5E-4F32-8C09-ABCEFDFDF958} = {3865234D-1E5E-4F32-8C09-ABCEFDFDF958}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APP_MVC_ServicioWCF", "..\APP_MVC_ServicioWCF\APP_MVC_ServicioWCF.csproj", "{3865234D-1E5E-4F32-8C09-ABCEFDFDF958}"
 EndProject

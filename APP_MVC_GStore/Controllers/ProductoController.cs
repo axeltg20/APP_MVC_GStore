@@ -7,22 +7,26 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using APP_MVC_GStore.Models;
+using APP_MVC_GStore.ReferenciaProductos;
 
 namespace APP_MVC_GStore.Controllers
 {
     public class ProductoController : Controller
     {
-        private GameStoreEntities db = new GameStoreEntities();
-
+        //private GameStoreEntities db = new GameStoreEntities();
+        ServicioProductosClient proxy = new ServicioProductosClient();
         // GET: Producto
         public ActionResult Index()
         {
-            var tB_Producto = db.TB_Producto.Include(t => t.TB_Categoria);
-            return View(tB_Producto.ToList());
+
+            //Retorna vista Productos desde el proxy
+            return View(proxy.Productos().ToString());
         }
 
+        //Comentado para no intervenir con el service
+
         // GET: Producto/Details/5
-        public ActionResult Details(int? id)
+       /* public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -133,7 +137,7 @@ namespace APP_MVC_GStore.Controllers
         
 
 
-
+        */
 
 
 

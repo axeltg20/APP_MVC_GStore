@@ -17,4 +17,6 @@ namespace APP_MVC_ServicioWCF
         [OperationContract] void ActualizaProducto(TB_Producto obj);
         [OperationContract] void EliminaProducto(int id);
     }
+
+  
 }
