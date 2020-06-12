@@ -132,7 +132,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Connected Services\ReferenciaProductos\Reference.cs">
+    <Compile Include="Connected Services\ReferenciaProductoAdm\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -140,67 +140,27 @@
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EncriptarContra.cs" />
-    <Compile Include="Models\GStoreModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GStoreModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GStoreModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GStoreModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GStoreModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\LoginUsuario.cs" />
     <Compile Include="Models\RegistroUsuario.cs" />
-    <Compile Include="Models\TB_Carrito.cs">
-      <DependentUpon>GStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TB_Categoria.cs">
-      <DependentUpon>GStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TB_ComprobantePago.cs">
-      <DependentUpon>GStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TB_DetalleComprobante.cs">
-      <DependentUpon>GStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TB_Direcciones.cs">
-      <DependentUpon>GStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TB_Producto.cs">
-      <DependentUpon>GStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TB_Usuario.cs">
-      <DependentUpon>GStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_ListarProducto_Result.cs">
-      <DependentUpon>GStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_Logueo_Result.cs">
-      <DependentUpon>GStoreModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BD\GStore.sql" />
-    <Content Include="Connected Services\ReferenciaProductos\APP_MVC_GStore.ReferenciaProductos.TB_Producto.datasource">
+    <Content Include="Connected Services\ReferenciaProductoAdm\APP_MVC_GStore.ReferenciaProductoAdm.usp_Admin_ListarProducto_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\ReferenciaProductos\ServicioProductos.disco" />
-    <None Include="Connected Services\ReferenciaProductos\configuration91.svcinfo" />
-    <None Include="Connected Services\ReferenciaProductos\configuration.svcinfo" />
-    <None Include="Connected Services\ReferenciaProductos\Reference.svcmap">
+    <Content Include="Connected Services\ReferenciaProductoAdm\APP_MVC_GStore.ReferenciaProductoAdm.usp_ListarCategoria_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ReferenciaProductoAdm\configuration91.svcinfo" />
+    <None Include="Connected Services\ReferenciaProductoAdm\configuration.svcinfo" />
+    <None Include="Connected Services\ReferenciaProductoAdm\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -216,33 +176,19 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\GStoreModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GStoreModel.Context.cs</LastGenOutput>
-      <DependentUpon>GStoreModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\GStoreModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GStoreModel.edmx</DependentUpon>
-      <LastGenOutput>GStoreModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\GStoreModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GStoreModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\GStoreModel.edmx.diagram">
-      <DependentUpon>GStoreModel.edmx</DependentUpon>
-    </Content>
-    <None Include="Connected Services\ReferenciaProductos\ServicioProductos.wsdl" />
-    <None Include="Connected Services\ReferenciaProductos\ServicioProductos.xsd">
+    <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos.wsdl" />
+    <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ReferenciaProductos\ServicioProductos1.xsd">
+    <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ReferenciaProductos\ServicioProductos2.xsd">
+    <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -270,10 +216,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Producto\Create.cshtml" />
-    <Content Include="Views\Producto\Delete.cshtml" />
-    <Content Include="Views\Producto\Details.cshtml" />
-    <Content Include="Views\Producto\Edit.cshtml" />
     <Content Include="Views\Registro\Ingresar.cshtml" />
     <Content Include="Views\Registro\Registrar.cshtml" />
     <Content Include="Views\Registro\RegistroConfirmado.cshtml" />
@@ -282,7 +224,10 @@
     <Content Include="Views\Login\Ingresar.cshtml" />
     <Content Include="Views\Login\Seguridad.cshtml" />
     <Content Include="Views\Registro\Seguridad.cshtml" />
-    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Admin\Productos.cshtml" />
+    <Content Include="Views\Admin\Agregar.cshtml" />
+    <Content Include="Views\Admin\Eliminar.cshtml" />
+    <Content Include="Views\Admin\Actualizar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,7 +252,13 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ReferenciaProductos\" />
+    <WCFMetadataStorage Include="Connected Services\ReferenciaProductoAdm\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\APP_MVC_Datos\APP_MVC_Datos.csproj">
+      <Project>{47acf5f8-3d7e-429e-93b1-9c55436fd914}</Project>
+      <Name>APP_MVC_Datos</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

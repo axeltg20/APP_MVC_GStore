@@ -1,5 +1,4 @@
-﻿using APP_MVC_ServicioWCF.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,6 +7,8 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using APP_MVC_Datos.Model;
+using System.Web.ModelBinding;
 
 namespace APP_MVC_ServicioWCF
 {
@@ -16,56 +17,46 @@ namespace APP_MVC_ServicioWCF
     public class ServicioProductos : IServicioProductos
     {
         //Conexion BD 
+        GameStoreEntities db = new GameStoreEntities();
 
-        //SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["GameStore"].ConnectionString);
-        GameStoreEntities bd = new GameStoreEntities();
-        public void ActualizaProducto(TB_Producto obj)
+        void IServicioProductos.ActualizaProducto(Producto obj)
         {
-            throw new NotImplementedException();
+            db.Database.ExecuteSqlCommand("EXEC usp_Admin_ActualizaProducto @id,@nomProd,@precio,@desc,@idCategoria,@stock",
+                new SqlParameter("@id", obj.idProd),
+                new SqlParameter("@nomProd", obj.nomProd),
+                new SqlParameter("@precio", obj.precio),
+                new SqlParameter("@desc", obj.descripcion),
+                new SqlParameter("@idCategoria", obj.idCategoria),
+                new SqlParameter("@stock", obj.stock)
+                );
         }
 
-        public void DoWork()
+        void IServicioProductos.EliminaProducto(int id)
         {
+            db.Database.ExecuteSqlCommand("EXEC usp_Admin_EliminarProducto @id",
+                new SqlParameter("@id",id)
+                );
         }
 
-        public void EliminaProducto(int id)
+        void IServicioProductos.InsertaProducto(Producto obj)
         {
-            throw new NotImplementedException();
+            db.Database.ExecuteSqlCommand("EXEC usp_Admin_InsertaProducto @nomProd,@precio,@desc,@idCategoria,@stock",
+                new SqlParameter("@nomProd",obj.nomProd),
+                new SqlParameter("@precio",obj.precio),
+                new SqlParameter("@desc",obj.descripcion),
+                new SqlParameter("@idCategoria",obj.idCategoria),
+                new SqlParameter("@stock",obj.stock)
+                );
         }
 
-        public void InsertaProducto(TB_Producto obj)
+        List<usp_Admin_ListarProducto_Result> IServicioProductos.Productos()
         {
-            throw new NotImplementedException();
+            return db.usp_Admin_ListarProducto().ToList();
         }
 
-        public List<usp_ListarProducto_Result> Productos()
+        List<usp_ListarCategoria_Result> IServicioProductos.Categorias()
         {
-            List<usp_ListarProducto_Result> lista = bd.usp_ListarProducto().ToList(); 
-/*            
- *            Lista producto con BD
- *            
- *            List<TB_Producto> lista = new List<TB_Producto>();
-            SqlCommand cmd = new SqlCommand("usp_ListarProducto", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cn.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                TB_Producto prod= new TB_Producto();
-                prod.idProd = Convert.ToInt32(dr["idProd"]);
-                prod.nomProd = dr["nomProd"].ToString();
-                prod.precio = Convert.ToInt32(dr["precio"]);
-                prod.descripcion = dr["descripcion"].ToString();
-                prod.foto = dr["foto"].ToString();
-                prod.idCategoria = Convert.ToInt32(dr["idCategoria"]);
-                prod.stock = Convert.ToInt32(dr["stock"]);
-                prod.estado = Convert.ToInt32(dr["estado"]);
-                lista.Add(prod);
-
-            }
-            dr.Close();
-            cn.Close();*/
-            return lista;
+            return db.usp_ListarCategoria().ToList();
         }
     }
 }

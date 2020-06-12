@@ -1,4 +1,5 @@
 ﻿using APP_MVC_GStore.Models;
+using APP_MVC_Datos.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,8 +107,9 @@ namespace APP_MVC_GStore.Controllers
         /*Detector de correos existentes*/
         public bool EmailExistente(string correo)
         {
-            var IsCheck = db.TB_Usuario.Where(x => x.email == correo).FirstOrDefault();
-            return IsCheck != null;
+            //var IsCheck = db.TB_Usuario.Where(x => x.email == correo).FirstOrDefault();
+            var check = db.TB_Usuario.Where(x => x.email == correo).FirstOrDefault();
+            return check != null;
         }
 
         /*Enviar Correo de validacion*/

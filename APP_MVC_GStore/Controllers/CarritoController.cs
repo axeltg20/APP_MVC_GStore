@@ -1,4 +1,4 @@
-﻿using APP_MVC_GStore.Models;
+﻿using APP_MVC_Datos.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;

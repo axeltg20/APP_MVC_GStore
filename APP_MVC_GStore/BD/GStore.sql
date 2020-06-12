@@ -95,6 +95,55 @@ create table TB_Carrito
 )
 go
 
+/*Procedicimientos Almacenados CRUD Producto*/
+CREATE OR ALTER PROC usp_Admin_ListarProducto
+AS
+BEGIN
+	SELECT p.idProd, p.nomProd, p.precio, p.descripcion, p.foto,c.nomCategoria, p.stock FROM TB_Producto p INNER JOIN tb_categoria c ON p.idCategoria = c.idCategoria WHERE estado = 1
+END
+GO
+
+CREATE OR ALTER PROC usp_Admin_InsertaProducto
+@nomProd VARCHAR(50),
+@precio MONEY,
+@desc VARCHAR(MAX),
+@idCategoria INT,
+@stock INT
+AS
+BEGIN
+INSERT INTO TB_Producto(nomProd, precio, descripcion, idCategoria, stock)
+VALUES(@nomProd, @precio, @desc,@idCategoria, @stock)
+END
+GO
+
+CREATE OR ALTER PROC usp_Admin_ActualizaProducto
+@id INT,
+@nomProd VARCHAR(50),
+@precio MONEY,
+@desc VARCHAR(MAX),
+@idCategoria INT,
+@stock INT
+AS
+BEGIN
+	UPDATE TB_Producto SET nomProd=@nomProd, precio=@precio, descripcion=@desc, idCategoria=@idCategoria, stock=@stock WHERE idProd = @id
+END
+GO
+
+CREATE OR ALTER PROC usp_Admin_EliminarProducto
+@id INT
+AS
+BEGIN
+	UPDATE TB_Producto SET estado = 1 WHERE idProd = @id
+END
+GO
+
+EXEC usp_Admin_InsertaProducto 'Nvdia GTX 1050 Ti', 700.00,'Tarjeta de Video Nvidia GTX 1050 TI 4GB' ,4, 10
+GO
+EXEC usp_Admin_ActualizaProducto 6,'Nvdia GTX 1060', 900.00,'Tarjeta de Video Nvidia GTX 1060 3GB' ,4, 15
+EXEC usp_Admin_ListarProducto
+GO
+EXEC usp_Admin_EliminarProducto 6
+GO
 
 /*Procedimientos Almacenados*/
 create proc usp_InsertaProducto
@@ -172,4 +221,7 @@ select * from TB_Usuario
 select * from TB_Categoria
 
 SELECT * FROM TB_Usuario
+GO
+
+SELECT * FROM TB_Producto
 GO
