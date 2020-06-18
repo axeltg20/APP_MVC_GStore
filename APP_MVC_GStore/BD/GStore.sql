@@ -104,7 +104,7 @@ create table TB_Tarjetas
 	nroTarjeta char(16),
 	fechaExpiracion date,
 	ccv char(3),
-	saldo int
+	saldo int default 100000
 )
 go
 
@@ -227,16 +227,30 @@ create or alter proc usp_AgregarTarjeta
 	@apellidoTitular varchar(MAX),
 	@nroTarjeta char(16),
 	@fechaExpiracion date,
-	@ccv char(3),
-	@saldo int
+	@ccv char(3)
 as
 begin
-	insert into TB_Tarjetas(idUsuario,nombreTitular,apellidoTitular,nroTarjeta,fechaExpiracion,ccv,saldo)
-	values(@idUsuario,@nombreTitular,@apellidoTitular,@nroTarjeta,@fechaExpiracion,@ccv,@saldo)
+	insert into TB_Tarjetas(idUsuario,nombreTitular,apellidoTitular,nroTarjeta,fechaExpiracion,ccv)
+	values(@idUsuario,@nombreTitular,@apellidoTitular,@nroTarjeta,@fechaExpiracion,@ccv)
 end
 go
 
-
+create or alter procedure usp_Pagar
+@idTarjeta int,
+@total int
+as
+begin
+	update TB_tarjetas set saldo = saldo - @total where idTarjeta = @idTarjeta
+end
+go
+create or alter procedure usp_listarTarjetas
+@idUsuario int
+as
+begin
+	select * from TB_Tarjetas where idUsuario = @idUsuario
+end
+go
+--Ejecutar los procedures
 INSERT INTO TB_Usuario VALUES('admin', 'sote', null,'admin@gmail.com', 1, null, 'admin')
 GO
 exec usp_InsertarCategoria 'Videojuegos'
@@ -246,12 +260,15 @@ exec usp_InsertarCategoria 'Tarjetas de video'
 exec usp_InsertaProducto 'RTX 2080 Ti', 5000, 4, 10
 exec usp_InsertaProducto 'Intel Core i9 9900k', 3400, 3, 10
 exec usp_ListarProducto
-exec usp_AgregarTarjeta 1, 'admin', 'sote', '1234567890123456', '18/01/20', '123', 9000
+exec usp_AgregarTarjeta 1, 'admin', 'sote', '1234567890123456', '18/01/20', '123'
+exec usp_AgregarTarjeta 1, 'admin', 'soteasd', '1234567890123456', '18/01/20', '123'
+exec usp_Pagar 1, 1000.50
+exec usp_listarTarjetas 1
 select * from TB_Usuario
 select * from TB_Categoria
 select * from TB_Producto
-select * from TB_Tarjetas
 SELECT * FROM TB_Usuario
+select * from TB_Tarjetas
 GO
 
 SELECT * FROM TB_Producto
@@ -260,6 +277,4 @@ EXEC usp_Admin_InsertaProducto 'Nvdia GTX 1050 Ti', 700.00,'Tarjeta de Video Nvi
 GO
 EXEC usp_Admin_ActualizaProducto 6,'Nvdia GTX 1060', 900.00,'Tarjeta de Video Nvidia GTX 1060 3GB' ,4, 15
 EXEC usp_Admin_ListarProducto
-GO
-EXEC usp_Admin_EliminarProducto 6
 GO
