@@ -12,18 +12,17 @@ namespace APP_MVC_Datos.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class TB_Categoria
+    public partial class TB_Tarjetas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TB_Categoria()
-        {
-            this.TB_Producto = new HashSet<TB_Producto>();
-        }
+        public int idTarjeta { get; set; }
+        public int idUsuario { get; set; }
+        public string nombreTitular { get; set; }
+        public string apellidoTitular { get; set; }
+        public string nroTarjeta { get; set; }
+        public Nullable<System.DateTime> fechaExpiracion { get; set; }
+        public string ccv { get; set; }
+        public Nullable<int> saldo { get; set; }
     
-        public int idCategoria { get; set; }
-        public string nomCategoria { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TB_Producto> TB_Producto { get; set; }
+        public virtual TB_Usuario TB_Usuario { get; set; }
     }
 }

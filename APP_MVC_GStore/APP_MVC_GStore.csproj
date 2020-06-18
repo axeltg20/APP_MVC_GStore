@@ -141,12 +141,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\PagosController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CarritoItem.cs" />
     <Compile Include="Models\EncriptarContra.cs" />
     <Compile Include="Models\LoginUsuario.cs" />
+    <Compile Include="Models\Modelos.cs" />
     <Compile Include="Models\RegistroUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -168,7 +171,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\estilos.css" />
     <Content Include="Content\Images\default.png" />
+    <Content Include="Content\Images\electron-640x404.jpg" />
     <Content Include="Content\Images\rs_fb.png" />
     <Content Include="Content\Images\rs_tw.png" />
     <Content Include="Content\Images\rs_wpp.png" />
@@ -191,6 +196,7 @@
     <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Content\Sestilos.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -220,7 +226,6 @@
     <Content Include="Views\Registro\Registrar.cshtml" />
     <Content Include="Views\Registro\RegistroConfirmado.cshtml" />
     <Content Include="Views\Registro\VerificacionUsuario.cshtml" />
-    <Content Include="Views\Carrito\Carrito.cshtml" />
     <Content Include="Views\Login\Ingresar.cshtml" />
     <Content Include="Views\Login\Seguridad.cshtml" />
     <Content Include="Views\Registro\Seguridad.cshtml" />
@@ -228,6 +233,10 @@
     <Content Include="Views\Admin\Agregar.cshtml" />
     <Content Include="Views\Admin\Eliminar.cshtml" />
     <Content Include="Views\Admin\Actualizar.cshtml" />
+    <Content Include="Views\Carrito\ListaProductos.cshtml" />
+    <Content Include="Views\Pagos\AgregarTarjeta.cshtml" />
+    <Content Include="Views\Carrito\Pagar.cshtml" />
+    <Content Include="Views\Carrito\AgregaCarrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

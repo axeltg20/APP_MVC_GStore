@@ -95,6 +95,19 @@ create table TB_Carrito
 )
 go
 
+create table TB_Tarjetas
+(
+	idTarjeta int primary key identity not null,
+	idUsuario int references TB_Usuario(idUsuario) not null,
+	nombreTitular varchar(MAX),
+	apellidoTitular varchar(MAX),
+	nroTarjeta char(16),
+	fechaExpiracion date,
+	ccv char(3),
+	saldo int
+)
+go
+
 /*Procedicimientos Almacenados CRUD Producto*/
 CREATE OR ALTER PROC usp_Admin_ListarProducto
 AS
@@ -137,13 +150,7 @@ BEGIN
 END
 GO
 
-EXEC usp_Admin_InsertaProducto 'Nvdia GTX 1050 Ti', 700.00,'Tarjeta de Video Nvidia GTX 1050 TI 4GB' ,4, 10
-GO
-EXEC usp_Admin_ActualizaProducto 6,'Nvdia GTX 1060', 900.00,'Tarjeta de Video Nvidia GTX 1060 3GB' ,4, 15
-EXEC usp_Admin_ListarProducto
-GO
-EXEC usp_Admin_EliminarProducto 6
-GO
+
 
 /*Procedimientos Almacenados*/
 
@@ -214,6 +221,20 @@ begin
 end
 go
 
+create or alter proc usp_AgregarTarjeta
+	@idUsuario int,
+	@nombreTitular varchar(MAX),
+	@apellidoTitular varchar(MAX),
+	@nroTarjeta char(16),
+	@fechaExpiracion date,
+	@ccv char(3),
+	@saldo int
+as
+begin
+	insert into TB_Tarjetas(idUsuario,nombreTitular,apellidoTitular,nroTarjeta,fechaExpiracion,ccv,saldo)
+	values(@idUsuario,@nombreTitular,@apellidoTitular,@nroTarjeta,@fechaExpiracion,@ccv,@saldo)
+end
+go
 
 
 INSERT INTO TB_Usuario VALUES('admin', 'sote', null,'admin@gmail.com', 1, null, 'admin')
@@ -225,11 +246,20 @@ exec usp_InsertarCategoria 'Tarjetas de video'
 exec usp_InsertaProducto 'RTX 2080 Ti', 5000, 4, 10
 exec usp_InsertaProducto 'Intel Core i9 9900k', 3400, 3, 10
 exec usp_ListarProducto
+exec usp_AgregarTarjeta 1, 'admin', 'sote', '1234567890123456', '18/01/20', '123', 9000
 select * from TB_Usuario
 select * from TB_Categoria
-
+select * from TB_Producto
+select * from TB_Tarjetas
 SELECT * FROM TB_Usuario
 GO
 
 SELECT * FROM TB_Producto
+GO
+EXEC usp_Admin_InsertaProducto 'Nvdia GTX 1050 Ti', 700.00,'Tarjeta de Video Nvidia GTX 1050 TI 4GB' ,4, 10
+GO
+EXEC usp_Admin_ActualizaProducto 6,'Nvdia GTX 1060', 900.00,'Tarjeta de Video Nvidia GTX 1060 3GB' ,4, 15
+EXEC usp_Admin_ListarProducto
+GO
+EXEC usp_Admin_EliminarProducto 6
 GO

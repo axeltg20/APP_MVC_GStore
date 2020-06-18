@@ -83,6 +83,9 @@
     <Compile Include="Model\TB_Producto.cs">
       <DependentUpon>GStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TB_Tarjetas.cs">
+      <DependentUpon>GStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\TB_Usuario.cs">
       <DependentUpon>GStoreModel.tt</DependentUpon>
     </Compile>
@@ -93,6 +96,9 @@
       <DependentUpon>GStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\usp_ListarProducto_Result.cs">
+      <DependentUpon>GStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\usp_listarTarjetas_Result.cs">
       <DependentUpon>GStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\usp_Logueo_Result.cs">

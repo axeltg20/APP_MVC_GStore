@@ -18,6 +18,8 @@
         <AssociationConnector Association="GameStoreModel.FK__TB_Detall__idCom__47DBAE45" ManuallyRouted="false" />
         <AssociationConnector Association="GameStoreModel.FK__TB_Detall__idPro__48CFD27E" ManuallyRouted="false" />
         <AssociationConnector Association="GameStoreModel.FK__TB_Direcc__idUsu__4222D4EF" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GameStoreModel.TB_Tarjetas" Width="1.5" PointX="3" PointY="15.875" />
+        <AssociationConnector Association="GameStoreModel.FK__TB_Tarjet__idUsu__4CA06362" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

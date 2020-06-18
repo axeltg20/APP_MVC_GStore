@@ -64,6 +64,19 @@
           <Property Name="stock" Type="int" Nullable="false" />
           <Property Name="estado" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="TB_Tarjetas">
+          <Key>
+            <PropertyRef Name="idTarjeta" />
+          </Key>
+          <Property Name="idTarjeta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="nombreTitular" Type="varchar(max)" />
+          <Property Name="apellidoTitular" Type="varchar(max)" />
+          <Property Name="nroTarjeta" Type="char" MaxLength="16" />
+          <Property Name="fechaExpiracion" Type="date" />
+          <Property Name="ccv" Type="char" MaxLength="3" />
+          <Property Name="saldo" Type="int" />
+        </EntityType>
         <EntityType Name="TB_Usuario">
           <Key>
             <PropertyRef Name="idUsuario" />
@@ -77,7 +90,7 @@
           <Property Name="codigoactivacion" Type="uniqueidentifier" />
           <Property Name="contra" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <Association Name="FK__TB_Carrit__idpro__4BAC3F29">
+        <Association Name="FK__TB_Carrit__idpro__38996AB5">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="0..1" />
           <End Role="TB_Carrito" Type="Self.TB_Carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -89,7 +102,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Compro__idUsu__44FF419A">
+        <Association Name="FK__TB_Compro__idUsu__31EC6D26">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -101,7 +114,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idCom__47DBAE45">
+        <Association Name="FK__TB_Detall__idCom__34C8D9D1">
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -113,7 +126,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idPro__48CFD27E">
+        <Association Name="FK__TB_Detall__idPro__35BCFE0A">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -125,7 +138,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Direcc__idUsu__4222D4EF">
+        <Association Name="FK__TB_Direcc__idUsu__2F10007B">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="0..1" />
           <End Role="TB_Direcciones" Type="Self.TB_Direcciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -137,7 +150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Produc__idCat__3A81B327">
+        <Association Name="FK__TB_Produc__idCat__276EDEB3">
           <End Role="TB_Categoria" Type="Self.TB_Categoria" Multiplicity="1" />
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -149,14 +162,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="usp_ActualizaProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="nomProd" Type="varchar" Mode="In" />
-          <Parameter Name="precio" Type="money" Mode="In" />
-          <Parameter Name="desc" Type="varchar(max)" Mode="In" />
-          <Parameter Name="idCategoria" Type="int" Mode="In" />
-          <Parameter Name="stock" Type="int" Mode="In" />
-        </Function>
+        <Association Name="FK__TB_Tarjet__idUsu__3B75D760">
+          <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
+          <End Role="TB_Tarjetas" Type="Self.TB_Tarjetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="TB_Tarjetas">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="usp_Admin_ActualizaProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="nomProd" Type="varchar" Mode="In" />
@@ -180,6 +197,14 @@
           <Parameter Name="idProd" Type="int" Mode="In" />
           <Parameter Name="cantidad" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_AgregarTarjeta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="nombreTitular" Type="varchar(max)" Mode="In" />
+          <Parameter Name="apellidoTitular" Type="varchar(max)" Mode="In" />
+          <Parameter Name="nroTarjeta" Type="char" Mode="In" />
+          <Parameter Name="fechaExpiracion" Type="date" Mode="In" />
+          <Parameter Name="ccv" Type="char" Mode="In" />
+        </Function>
         <Function Name="usp_CrearUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="apellido" Type="varchar" Mode="In" />
@@ -198,9 +223,16 @@
         </Function>
         <Function Name="usp_ListarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_ListarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_listarTarjetas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_Logueo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="email" Type="varchar" Mode="In" />
           <Parameter Name="contra" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Pagar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idTarjeta" Type="int" Mode="In" />
+          <Parameter Name="total" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="GameStoreModelStoreContainer">
           <EntitySet Name="TB_Carrito" EntityType="Self.TB_Carrito" Schema="dbo" store:Type="Tables" />
@@ -209,30 +241,35 @@
           <EntitySet Name="TB_DetalleComprobante" EntityType="Self.TB_DetalleComprobante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Direcciones" EntityType="Self.TB_Direcciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Producto" EntityType="Self.TB_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_Tarjetas" EntityType="Self.TB_Tarjetas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Usuario" EntityType="Self.TB_Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__TB_Carrit__idpro__4BAC3F29" Association="Self.FK__TB_Carrit__idpro__4BAC3F29">
+          <AssociationSet Name="FK__TB_Carrit__idpro__38996AB5" Association="Self.FK__TB_Carrit__idpro__38996AB5">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_Carrito" EntitySet="TB_Carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Compro__idUsu__44FF419A" Association="Self.FK__TB_Compro__idUsu__44FF419A">
+          <AssociationSet Name="FK__TB_Compro__idUsu__31EC6D26" Association="Self.FK__TB_Compro__idUsu__31EC6D26">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idCom__47DBAE45" Association="Self.FK__TB_Detall__idCom__47DBAE45">
+          <AssociationSet Name="FK__TB_Detall__idCom__34C8D9D1" Association="Self.FK__TB_Detall__idCom__34C8D9D1">
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idPro__48CFD27E" Association="Self.FK__TB_Detall__idPro__48CFD27E">
+          <AssociationSet Name="FK__TB_Detall__idPro__35BCFE0A" Association="Self.FK__TB_Detall__idPro__35BCFE0A">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Direcc__idUsu__4222D4EF" Association="Self.FK__TB_Direcc__idUsu__4222D4EF">
+          <AssociationSet Name="FK__TB_Direcc__idUsu__2F10007B" Association="Self.FK__TB_Direcc__idUsu__2F10007B">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_Direcciones" EntitySet="TB_Direcciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Produc__idCat__3A81B327" Association="Self.FK__TB_Produc__idCat__3A81B327">
+          <AssociationSet Name="FK__TB_Produc__idCat__276EDEB3" Association="Self.FK__TB_Produc__idCat__276EDEB3">
             <End Role="TB_Categoria" EntitySet="TB_Categoria" />
             <End Role="TB_Producto" EntitySet="TB_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Tarjet__idUsu__3B75D760" Association="Self.FK__TB_Tarjet__idUsu__3B75D760">
+            <End Role="TB_Usuario" EntitySet="TB_Usuario" />
+            <End Role="TB_Tarjetas" EntitySet="TB_Tarjetas" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -322,6 +359,7 @@
           <Property Name="contra" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TB_ComprobantePago" Relationship="Self.FK__TB_Compro__idUsu__44FF419A" FromRole="TB_Usuario" ToRole="TB_ComprobantePago" />
           <NavigationProperty Name="TB_Direcciones" Relationship="Self.FK__TB_Direcc__idUsu__4222D4EF" FromRole="TB_Usuario" ToRole="TB_Direcciones" />
+          <NavigationProperty Name="TB_Tarjetas" Relationship="GameStoreModel.FK__TB_Tarjet__idUsu__4CA06362" FromRole="TB_Usuario" ToRole="TB_Tarjetas" />
         </EntityType>
         <Association Name="FK__TB_Carrit__idpro__4BAC3F29">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="0..1" />
@@ -480,6 +518,26 @@
           </FunctionImport>
           <FunctionImport Name="usp_Admin_ListarProducto" ReturnType="Collection(GameStoreModel.usp_Admin_ListarProducto_Result)" />
           <FunctionImport Name="usp_ListarCategoria" ReturnType="Collection(GameStoreModel.usp_ListarCategoria_Result)" />
+          <EntitySet Name="TB_Tarjetas" EntityType="GameStoreModel.TB_Tarjetas" />
+          <AssociationSet Name="FK__TB_Tarjet__idUsu__4CA06362" Association="GameStoreModel.FK__TB_Tarjet__idUsu__4CA06362">
+            <End Role="TB_Usuario" EntitySet="TB_Usuario" />
+            <End Role="TB_Tarjetas" EntitySet="TB_Tarjetas" />
+          </AssociationSet>
+          <FunctionImport Name="usp_AgregarTarjeta">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="nombreTitular" Mode="In" Type="String" />
+            <Parameter Name="apellidoTitular" Mode="In" Type="String" />
+            <Parameter Name="nroTarjeta" Mode="In" Type="String" />
+            <Parameter Name="fechaExpiracion" Mode="In" Type="DateTime" />
+            <Parameter Name="ccv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_listarTarjetas" ReturnType="Collection(GameStoreModel.usp_listarTarjetas_Result)">
+          <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Pagar">
+            <Parameter Name="idTarjeta" Mode="In" Type="Int32" />
+            <Parameter Name="total" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="usp_ListarProducto_Result">
           <Property Type="Int32" Name="idProd" Nullable="false" />
@@ -505,6 +563,42 @@
         <ComplexType Name="usp_ListarCategoria_Result">
           <Property Type="Int32" Name="idCategoria" Nullable="false" />
           <Property Type="String" Name="nomCategoria" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="TB_Tarjetas">
+          <Key>
+            <PropertyRef Name="idTarjeta" />
+          </Key>
+          <Property Name="idTarjeta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="nombreTitular" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoTitular" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_Usuario" Relationship="GameStoreModel.FK__TB_Tarjet__idUsu__4CA06362" FromRole="TB_Tarjetas" ToRole="TB_Usuario" />
+          <Property Name="nroTarjeta" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="fechaExpiracion" Type="DateTime" Precision="0" />
+          <Property Name="ccv" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="saldo" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__TB_Tarjet__idUsu__4CA06362">
+          <End Type="GameStoreModel.TB_Usuario" Role="TB_Usuario" Multiplicity="1" />
+          <End Type="GameStoreModel.TB_Tarjetas" Role="TB_Tarjetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="TB_Tarjetas">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="usp_listarTarjetas_Result">
+          <Property Type="Int32" Name="idTarjeta" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="String" Name="nombreTitular" Nullable="true" />
+          <Property Type="String" Name="apellidoTitular" Nullable="true" />
+          <Property Type="String" Name="nroTarjeta" Nullable="true" MaxLength="16" />
+          <Property Type="DateTime" Name="fechaExpiracion" Nullable="true" />
+          <Property Type="String" Name="ccv" Nullable="true" MaxLength="3" />
+          <Property Type="Int32" Name="saldo" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -615,7 +709,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_ActualizaProducto" FunctionName="GameStoreModel.Store.usp_ActualizaProducto" />
           <FunctionImportMapping FunctionImportName="usp_Admin_ActualizaProducto" FunctionName="GameStoreModel.Store.usp_Admin_ActualizaProducto" />
           <FunctionImportMapping FunctionImportName="usp_Admin_EliminarProducto" FunctionName="GameStoreModel.Store.usp_Admin_EliminarProducto" />
           <FunctionImportMapping FunctionImportName="usp_Admin_InsertaProducto" FunctionName="GameStoreModel.Store.usp_Admin_InsertaProducto" />
@@ -640,6 +733,36 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TB_Tarjetas">
+            <EntityTypeMapping TypeName="GameStoreModel.TB_Tarjetas">
+              <MappingFragment StoreEntitySet="TB_Tarjetas">
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="ccv" ColumnName="ccv" />
+                <ScalarProperty Name="fechaExpiracion" ColumnName="fechaExpiracion" />
+                <ScalarProperty Name="nroTarjeta" ColumnName="nroTarjeta" />
+                <ScalarProperty Name="apellidoTitular" ColumnName="apellidoTitular" />
+                <ScalarProperty Name="nombreTitular" ColumnName="nombreTitular" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idTarjeta" ColumnName="idTarjeta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_AgregarTarjeta" FunctionName="GameStoreModel.Store.usp_AgregarTarjeta" />
+          <FunctionImportMapping FunctionImportName="usp_listarTarjetas" FunctionName="GameStoreModel.Store.usp_listarTarjetas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GameStoreModel.usp_listarTarjetas_Result">
+                <ScalarProperty Name="idTarjeta" ColumnName="idTarjeta" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="nombreTitular" ColumnName="nombreTitular" />
+                <ScalarProperty Name="apellidoTitular" ColumnName="apellidoTitular" />
+                <ScalarProperty Name="nroTarjeta" ColumnName="nroTarjeta" />
+                <ScalarProperty Name="fechaExpiracion" ColumnName="fechaExpiracion" />
+                <ScalarProperty Name="ccv" ColumnName="ccv" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Pagar" FunctionName="GameStoreModel.Store.usp_Pagar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

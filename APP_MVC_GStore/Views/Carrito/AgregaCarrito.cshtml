@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "AgregaCarrito";
+}
+
+<h2>AgregaCarrito</h2>
+<link rel="stylesheet" type="text/css" href="~/Content/estilos.css" media="screen" />
+<div>
+    <a class="btn btn-primary" href="@Url.Action("ListaProductos", "Carrito")">Seguir Comprando</a>
+    <a class="btn btn-success" id="comprarTodo">Comprar Todo</a>
+</div>
+<table class="table active">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th> </th>
+            <th>Nombre</th>
+            <th> </th>
+            <th>Precio</th>
+            <th> </th>
+            <th>Cantidad</th>
+            <th> </th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            double total = 0;
+        }
+        @if (Session["carrito"] != null)
+        {
+
+            foreach (var item in (List<APP_MVC_GStore.Models.CarritoItem>)Session["carrito"])
+            {
+                total += (double)(item.cantidad * item.producto.precio);
+                <tr>
+                    <td>@item.producto.idProd</td>
+                    <th> </th>
+                    <td>@item.producto.nomProd</td>
+                    <th> </th>
+                    <td>@String.Format("{0:C}", item.producto.precio)</td>
+                    <th> </th>
+                    <td>@item.cantidad</td>
+                    <th> </th>
+                    <td>@String.Format("{0:C}", (item.cantidad * item.producto.precio))</td>
+                    <th> </th>
+                    <td><a class="btn btn-danger" href="@Url.Action("Delete", "Carrito", new { Id = item.producto.idProd })">Eliminar Producto</a></td>
+                    <th> </th>
+                </tr>
+            }
+        }
+    </tbody>
+    <tr></tr>
+    <tfoot>
+        <tr>
+            <th colspan="4">Total</th>
+            <th id="total">@String.Format("{0:c}", total)</th>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title"></h3>
+            </div>
+            <div class="modal-body col-xs-12 well predeterminado">
+                <div class="creditCardForm">
+                    <div class="heading">
+                        <h1>Confirmar Compra</h1>
+                    </div>
+                    <div class="payment">
+                        <form>
+                            <div class="form-group owner">
+                                <label for="owner">Owner</label>
+                                <input type="text" class="form-control" id="owner">
+                            </div>
+                            <div class="form-group CVV">
+                                <label for="cvv">CVV</label>
+                                <input type="text" class="form-control" id="cvv">
+                            </div>
+                            <div class="form-group" id="card-number-field">
+                                <label for="cardNumber">Card Number</label>
+                                    <input type="text" class="form-control" value="@ViewBag.nroTarjeta">
+                            </div>
+                            <div class="form-group" id="expiration-date">
+                                <label>Expiration Date</label>
+                                <input type="text"  class="form-control" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            @*
+                <div class="modal-body col-xs-12 well oculto">
+                    <div>
+                        <strong>idUsuario: </strong>
+                        <input type="text" class="idUsuario" />
+                        <br />
+                        <strong>Nombre: </strong>
+                        <input type="text" value="Nombre" class="nombreTitular" />
+                        <br />
+                        <strong>Apellido: </strong>
+                        <input type="text" value="Apellido" class="apellidoTitular" />
+                        <br />
+                        <strong>Número de la tarjeta: </strong>
+                        <input type="text" value="Tarjeta" class="nroTarjeta" />
+                        <br />
+                        <strong>Fecha de Vencimiento</strong>
+                        <input type="text" value="Fecha de vencimiento" class="fechaExpiracion" />
+                        <br />
+                        <strong>CCV</strong>
+                        <input type="text" value="CCV" class="ccv" />
+                    </div>
+                </div>
+            *@
+
+            <div class="modal-footer">
+                    <div class="payment">
+                        <form>
+                            <div class="form-group" id="pay-now">
+                                <a href="#" class="btn btn-success" id="confirmarCompra">Pagar</a>
+                                <a class="btn btn-primary" id="agregarTarjeta">Agregar Tarjeta</a>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*Seccion JQUERY/JAVASCRIPT*@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        /*var idUsuario = $(document).parent().parent().find(".idUsuario").val();
+        var nombreTitular = $(document).parent().parent().find(".nombreTitular").val();;
+        var apellidoTitular = $(document).parent().parent().find(".apellidoTitular").val();;
+        var nroTarjeta = $(document).parent().parent().find(".nroTarjeta").val();;
+        var fechaExpiracion = $(document).parent().parent().find(".fechaExpiracion").val();;
+        var ccv = $(document).parent().parent().find(".ccv").val();
+        */
+
+            $("#comprarTodo").click(function () {
+                $("#myModal").modal('show');
+                $("#agregarTarjeta").attr("href", "@Url.Action("AgregarTarjeta", "Pagos")");
+            });
+        $("#confirmarCompra").click(function () {
+            var url = "@Url.Action("Pagar", "Carrito", new { total = total })";
+            $("#confirmarCompra").attr("href", url);
+        });
+
+    });
+
+
+</script>

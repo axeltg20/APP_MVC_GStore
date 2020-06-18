@@ -11,14 +11,15 @@ namespace APP_MVC_Datos.Model
 {
     using System;
     
-    public partial class usp_Admin_ListarProducto_Result
+    public partial class usp_listarTarjetas_Result
     {
-        public int idProd { get; set; }
-        public string nomProd { get; set; }
-        public decimal precio { get; set; }
-        public string descripcion { get; set; }
-        public string foto { get; set; }
-        public string nomCategoria { get; set; }
-        public int stock { get; set; }
+        public int idTarjeta { get; set; }
+        public int idUsuario { get; set; }
+        public string nombreTitular { get; set; }
+        public string apellidoTitular { get; set; }
+        public string nroTarjeta { get; set; }
+        public Nullable<System.DateTime> fechaExpiracion { get; set; }
+        public string ccv { get; set; }
+        public Nullable<int> saldo { get; set; }
     }
 }

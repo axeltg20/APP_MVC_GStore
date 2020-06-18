@@ -1,0 +1,134 @@
+﻿@model IEnumerable<APP_MVC_Datos.Model.TB_Producto>
+@{
+    ViewBag.Title = "ListaProductos";
+}
+
+<h2>ListaProductos</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nomProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.foto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TB_Categoria.nomCategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stock)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="idProductoGet">
+                @Html.DisplayFor(modelItem => item.idProd)
+            </td>
+            <td class="producto">
+                @Html.DisplayFor(modelItem => item.nomProd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.foto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TB_Categoria.nomCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+            <td>
+                <a href="#" class="btn btn-success" id=@item.idProd>Comprar YA!</a>
+            </td>
+            <td>
+                <a href="#" class="btn btn-danger" id="Acarrito">Agregar al carrito</a>
+            </td>
+            @*<td>
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
+</table>
+<div class="panel-footer">
+    <a href="@Url.Action("AgregaCarrito", "Carrito")" class="btn btn-success" id="Carrito">Ver Carrito</a>
+</div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Agregar al Carrito</h3>
+            </div>
+            <div class="modal-body">
+                <strong>Producto:</strong>
+                <strong id="nomProducto">
+                </strong>
+                <br />
+                <strong>Ingrese cantidad del producto :</strong>
+                <input type="number" name="cantidad" class="cantidad" />
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-success" id="agregar">Agregar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+   $(document).ready(function () {
+       var nombre = "";
+       var idproducto = "";
+       var cantidad;
+       var url = '@Url.Action("AgregaCarrito", "Carrito")';
+            $(".btn-danger").click(function () {
+
+                $(this).parents("tr").find(".producto").each(function () {
+                    nombre = $(this).html();
+                    $("#nomProducto").text(nombre);
+                });
+                $(this).parents("tr").find(".idProductoGet").each(function () {
+                    idproducto = $(this).html();
+                });
+                $("#myModal").modal('show');
+            });
+       $("#agregar").click(function (event)
+       {
+           cantidad = $(this).parent().parent().find(".cantidad").val();
+           $.ajax({
+               data: { id: idproducto, cantidad: cantidad },
+               url: "@Url.Action("AgregaCarrito", "Carrito")",
+               type: "post",
+               success: function (response) {
+                   alert("Producto: " + nombre + " agregado por " + cantidad + " unidades");
+               },
+               error: function (err, error) {
+                   alert(error);
+               }
+           });
+       });
+   });
+
+</script>
