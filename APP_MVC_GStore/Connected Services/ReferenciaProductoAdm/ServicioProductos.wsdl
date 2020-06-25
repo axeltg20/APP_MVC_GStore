@@ -38,6 +38,24 @@
   <wsdl:message name="IServicioProductos_Categorias_OutputMessage">
     <wsdl:part name="parameters" element="tns:CategoriasResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioProductos_InsertaCategoria_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertaCategoria" />
+  </wsdl:message>
+  <wsdl:message name="IServicioProductos_InsertaCategoria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertaCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioProductos_ActualizaCategoria_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizaCategoria" />
+  </wsdl:message>
+  <wsdl:message name="IServicioProductos_ActualizaCategoria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizaCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioProductos_EliminaCategoria_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminaCategoria" />
+  </wsdl:message>
+  <wsdl:message name="IServicioProductos_EliminaCategoria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminaCategoriaResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServicioProductos">
     <wsdl:operation name="Productos">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioProductos/Productos" message="tns:IServicioProductos_Productos_InputMessage" />
@@ -58,6 +76,18 @@
     <wsdl:operation name="Categorias">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioProductos/Categorias" message="tns:IServicioProductos_Categorias_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioProductos/CategoriasResponse" message="tns:IServicioProductos_Categorias_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaCategoria">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioProductos/InsertaCategoria" message="tns:IServicioProductos_InsertaCategoria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioProductos/InsertaCategoriaResponse" message="tns:IServicioProductos_InsertaCategoria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaCategoria">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioProductos/ActualizaCategoria" message="tns:IServicioProductos_ActualizaCategoria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioProductos/ActualizaCategoriaResponse" message="tns:IServicioProductos_ActualizaCategoria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaCategoria">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioProductos/EliminaCategoria" message="tns:IServicioProductos_EliminaCategoria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioProductos/EliminaCategoriaResponse" message="tns:IServicioProductos_EliminaCategoria_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicioProductos" type="tns:IServicioProductos">
@@ -100,6 +130,33 @@
     </wsdl:operation>
     <wsdl:operation name="Categorias">
       <soap:operation soapAction="http://tempuri.org/IServicioProductos/Categorias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaCategoria">
+      <soap:operation soapAction="http://tempuri.org/IServicioProductos/InsertaCategoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaCategoria">
+      <soap:operation soapAction="http://tempuri.org/IServicioProductos/ActualizaCategoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaCategoria">
+      <soap:operation soapAction="http://tempuri.org/IServicioProductos/EliminaCategoria" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="usp_Admin_ListarProducto_Result" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>APP_MVC_GStore.ReferenciaProductoAdm.usp_Admin_ListarProducto_Result, Connected Services.ReferenciaProductoAdm.Reference.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="usp_ListarCategoria_Result" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>APP_MVC_Datos.Model.usp_ListarCategoria_Result, APP_MVC_Datos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

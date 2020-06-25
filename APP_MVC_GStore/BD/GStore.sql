@@ -20,7 +20,8 @@ go
 create table TB_Categoria
 (
 idCategoria int primary key identity,
-nomCategoria varchar(20) not null
+nomCategoria varchar(20) not null,
+estado int default(1)
 )
 go
 
@@ -108,11 +109,15 @@ create table TB_Tarjetas
 )
 go
 
+/*****************************************************************************************************
+******************************************Creacion Procedures*****************************************
+*****************************************************************************************************/
+
 /*Procedicimientos Almacenados CRUD Producto*/
 CREATE OR ALTER PROC usp_Admin_ListarProducto
 AS
 BEGIN
-	SELECT p.idProd, p.nomProd, p.precio, p.descripcion, p.foto,c.nomCategoria, p.stock FROM TB_Producto p INNER JOIN tb_categoria c ON p.idCategoria = c.idCategoria WHERE estado = 1
+	SELECT p.idProd, p.nomProd, p.precio, p.descripcion, p.foto,c.nomCategoria, p.stock FROM TB_Producto p INNER JOIN tb_categoria c ON p.idCategoria = c.idCategoria WHERE p.estado = 1
 END
 GO
 
@@ -150,46 +155,50 @@ BEGIN
 END
 GO
 
-
-
-/*Procedimientos Almacenados*/
+/*Procedicimientos Almacenados CRUD Categoria*/
 
 CREATE OR ALTER PROC usp_ListarCategoria
 AS
 BEGIN
-	SELECT * FROM TB_Categoria
+	SELECT idCategoria,nomCategoria FROM TB_Categoria WHERE estado = 1
 END
 GO
 
-create proc usp_InsertaProducto
-@nomProd varchar(50),
-@precio money, 
-@idCategoria int,
-@stock int
+CREATE OR ALTER PROC usp_Admin_CrearCategoria
+@nombre VARCHAR(30)
+AS
+BEGIN
+	INSERT INTO TB_Categoria (nomCategoria) VALUES (@nombre)
+END
+GO
+
+CREATE OR ALTER PROC usp_Admin_ActualizaCategoria
+@idcat INT,
+@nombre VARCHAR(30)
+AS
+BEGIN
+	UPDATE TB_Categoria SET nomCategoria=@nombre WHERE idCategoria=@idcat
+END
+GO
+
+CREATE OR ALTER PROC usp_Admin_EliminaCategoria
+@idcat INT
+AS
+BEGIN
+	UPDATE TB_Categoria SET estado=0 WHERE idCategoria=@idcat
+END
+GO
+
+/*Procedimientos Almacenados*/
+
+create or alter proc usp_ListarProducto
 as
 begin
-insert into TB_Producto(nomProd, precio, idCategoria, stock, estado)
-values(@nomProd, @precio, @idCategoria, @stock, 1)
+	select idProd, nomProd, precio, nomCategoria, stock, p.estado from TB_Producto p inner join tb_categoria c on p.idCategoria = c.idCategoria where p.estado = 1
 end
 go
 
-create proc usp_ListarProducto
-as
-begin
-	select idProd, nomProd, precio, nomCategoria, stock, estado from TB_Producto p inner join tb_categoria c on p.idCategoria = c.idCategoria where estado = 1
-end
-go
-
-create proc usp_InsertarCategoria
-@nomCategoria varchar(50)
-as
-begin
-	insert into TB_Categoria(nomCategoria)
-	values(@nomCategoria)
-end
-go
-
-create proc usp_Logueo
+create or alter proc usp_Logueo
 @email varchar(250),
 @contra varchar(15)
 as
@@ -250,31 +259,52 @@ begin
 	select * from TB_Tarjetas where idUsuario = @idUsuario
 end
 go
---Ejecutar los procedures
+
+/*****************************************************************************************************
+******************************************Agregado de Datos*******************************************
+*****************************************************************************************************/
+
+/*Usuario Administrador*/
 INSERT INTO TB_Usuario VALUES('admin', 'sote', null,'admin@gmail.com', 1, null, 'admin')
 GO
-exec usp_InsertarCategoria 'Videojuegos'
-exec usp_InsertarCategoria 'Consolas'
-exec usp_InsertarCategoria 'Procesadores'
-exec usp_InsertarCategoria 'Tarjetas de video'
-exec usp_InsertaProducto 'RTX 2080 Ti', 5000, 4, 10
-exec usp_InsertaProducto 'Intel Core i9 9900k', 3400, 3, 10
-exec usp_ListarProducto
-exec usp_AgregarTarjeta 1, 'admin', 'sote', '1234567890123456', '18/01/20', '123'
-exec usp_AgregarTarjeta 1, 'admin', 'soteasd', '1234567890123456', '18/01/20', '123'
-exec usp_Pagar 1, 1000.50
-exec usp_listarTarjetas 1
-select * from TB_Usuario
-select * from TB_Categoria
-select * from TB_Producto
-SELECT * FROM TB_Usuario
-select * from TB_Tarjetas
-GO
 
-SELECT * FROM TB_Producto
-GO
+/*Categorias*/
+exec usp_Admin_CrearCategoria 'Videojuegos'
+exec usp_Admin_CrearCategoria 'Consolas'
+exec usp_Admin_CrearCategoria 'Procesadores'
+exec usp_Admin_CrearCategoria 'Tarjetas de video'
+
+/*Productos*/
+exec usp_Admin_InsertaProducto 'RTX 2080 Ti', 5000,'Tarjeta de Vide Nvidia RTX 2080 Ti', 4, 10
+exec usp_Admin_InsertaProducto 'Intel Core i9 9900k', 3400,'Procesador Intel Core I9 9900K',3, 10
+
+/*****************************************************************************************************
+******************************************Ejecucion Procedures****************************************
+*****************************************************************************************************/
+
+/*Procedures Admin Producto*/
 EXEC usp_Admin_InsertaProducto 'Nvdia GTX 1050 Ti', 700.00,'Tarjeta de Video Nvidia GTX 1050 TI 4GB' ,4, 10
 GO
 EXEC usp_Admin_ActualizaProducto 6,'Nvdia GTX 1060', 900.00,'Tarjeta de Video Nvidia GTX 1060 3GB' ,4, 15
 EXEC usp_Admin_ListarProducto
+GO
+
+/*Procedures Categoria*/
+EXEC usp_Admin_CrearCategoria 'Memoria RAM'
+GO
+EXEC usp_Admin_ActualizaCategoria 5,'Memorias RAM'
+GO
+EXEC usp_Admin_EliminaCategoria 5
+GO
+EXEC usp_ListarCategoria
+GO
+
+--Ejecutar los procedures
+
+exec usp_AgregarTarjeta 1, 'admin', 'sote', '1234567890123456', '18/01/20', '123'
+--exec usp_AgregarTarjeta 2, 'admin', 'soteasd', '1234567890123456', '18/01/20', '123' 
+exec usp_Pagar 1, 1000.50
+exec usp_listarTarjetas 1
+select * from TB_Usuario
+select * from TB_Tarjetas
 GO

@@ -155,12 +155,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BD\GStore.sql" />
-    <Content Include="Connected Services\ReferenciaProductoAdm\APP_MVC_GStore.ReferenciaProductoAdm.usp_Admin_ListarProducto_Result.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ReferenciaProductoAdm\APP_MVC_GStore.ReferenciaProductoAdm.usp_ListarCategoria_Result.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\ReferenciaProductoAdm\configuration91.svcinfo" />
     <None Include="Connected Services\ReferenciaProductoAdm\configuration.svcinfo" />
     <None Include="Connected Services\ReferenciaProductoAdm\Reference.svcmap">
@@ -197,6 +191,8 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Content\Sestilos.scss" />
+    <Content Include="Properties\DataSources\APP_MVC_Datos.Model.usp_Admin_ListarProducto_Result.datasource" />
+    <Content Include="Properties\DataSources\APP_MVC_Datos.Model.usp_ListarCategoria_Result.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -237,6 +233,9 @@
     <Content Include="Views\Pagos\AgregarTarjeta.cshtml" />
     <Content Include="Views\Carrito\Pagar.cshtml" />
     <Content Include="Views\Carrito\AgregaCarrito.cshtml" />
+    <Content Include="Views\Admin\AgregarCategoria.cshtml" />
+    <Content Include="Views\Admin\Categorias.cshtml" />
+    <Content Include="Views\Admin\ActualizarCategoria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

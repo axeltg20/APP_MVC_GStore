@@ -18,6 +18,9 @@ namespace APP_MVC_ServicioWCF
         [OperationContract] void ActualizaProducto(Producto obj);
         [OperationContract] void EliminaProducto(int id);
         [OperationContract] List<usp_ListarCategoria_Result> Categorias();
+        [OperationContract] void InsertaCategoria(Categoria obj);
+        [OperationContract] void ActualizaCategoria(Categoria obj);
+        [OperationContract] void EliminaCategoria(int id);
     }
     [DataContract]
     public class Producto

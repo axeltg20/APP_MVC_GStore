@@ -19,6 +19,7 @@
           </Key>
           <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nomCategoria" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="estado" Type="int" />
         </EntityType>
         <EntityType Name="TB_ComprobantePago">
           <Key>
@@ -90,7 +91,7 @@
           <Property Name="codigoactivacion" Type="uniqueidentifier" />
           <Property Name="contra" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <Association Name="FK__TB_Carrit__idpro__38996AB5">
+        <Association Name="FK__TB_Carrit__idpro__4CA06362">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="0..1" />
           <End Role="TB_Carrito" Type="Self.TB_Carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -102,7 +103,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Compro__idUsu__31EC6D26">
+        <Association Name="FK__TB_Compro__idUsu__45F365D3">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -114,7 +115,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idCom__34C8D9D1">
+        <Association Name="FK__TB_Detall__idCom__48CFD27E">
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -126,7 +127,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idPro__35BCFE0A">
+        <Association Name="FK__TB_Detall__idPro__49C3F6B7">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -138,7 +139,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Direcc__idUsu__2F10007B">
+        <Association Name="FK__TB_Direcc__idUsu__4316F928">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="0..1" />
           <End Role="TB_Direcciones" Type="Self.TB_Direcciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -150,7 +151,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Produc__idCat__276EDEB3">
+        <Association Name="FK__TB_Produc__idCat__3B75D760">
           <End Role="TB_Categoria" Type="Self.TB_Categoria" Multiplicity="1" />
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -162,7 +163,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Tarjet__idUsu__3B75D760">
+        <Association Name="FK__TB_Tarjet__idUsu__4F7CD00D">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
           <End Role="TB_Tarjetas" Type="Self.TB_Tarjetas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -174,6 +175,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="usp_Admin_ActualizaCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcat" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="usp_Admin_ActualizaProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="nomProd" Type="varchar" Mode="In" />
@@ -181,6 +186,12 @@
           <Parameter Name="desc" Type="varchar(max)" Mode="In" />
           <Parameter Name="idCategoria" Type="int" Mode="In" />
           <Parameter Name="stock" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Admin_CrearCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Admin_EliminaCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcat" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_Admin_EliminarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -212,15 +223,6 @@
           <Parameter Name="emailverif" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="contra" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="usp_InsertaProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nomProd" Type="varchar" Mode="In" />
-          <Parameter Name="precio" Type="money" Mode="In" />
-          <Parameter Name="idCategoria" Type="int" Mode="In" />
-          <Parameter Name="stock" Type="int" Mode="In" />
-        </Function>
-        <Function Name="usp_InsertarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nomCategoria" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="usp_ListarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_ListarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_listarTarjetas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -243,31 +245,31 @@
           <EntitySet Name="TB_Producto" EntityType="Self.TB_Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Tarjetas" EntityType="Self.TB_Tarjetas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Usuario" EntityType="Self.TB_Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__TB_Carrit__idpro__38996AB5" Association="Self.FK__TB_Carrit__idpro__38996AB5">
+          <AssociationSet Name="FK__TB_Carrit__idpro__4CA06362" Association="Self.FK__TB_Carrit__idpro__4CA06362">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_Carrito" EntitySet="TB_Carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Compro__idUsu__31EC6D26" Association="Self.FK__TB_Compro__idUsu__31EC6D26">
+          <AssociationSet Name="FK__TB_Compro__idUsu__45F365D3" Association="Self.FK__TB_Compro__idUsu__45F365D3">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idCom__34C8D9D1" Association="Self.FK__TB_Detall__idCom__34C8D9D1">
+          <AssociationSet Name="FK__TB_Detall__idCom__48CFD27E" Association="Self.FK__TB_Detall__idCom__48CFD27E">
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idPro__35BCFE0A" Association="Self.FK__TB_Detall__idPro__35BCFE0A">
+          <AssociationSet Name="FK__TB_Detall__idPro__49C3F6B7" Association="Self.FK__TB_Detall__idPro__49C3F6B7">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Direcc__idUsu__2F10007B" Association="Self.FK__TB_Direcc__idUsu__2F10007B">
+          <AssociationSet Name="FK__TB_Direcc__idUsu__4316F928" Association="Self.FK__TB_Direcc__idUsu__4316F928">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_Direcciones" EntitySet="TB_Direcciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Produc__idCat__276EDEB3" Association="Self.FK__TB_Produc__idCat__276EDEB3">
+          <AssociationSet Name="FK__TB_Produc__idCat__3B75D760" Association="Self.FK__TB_Produc__idCat__3B75D760">
             <End Role="TB_Categoria" EntitySet="TB_Categoria" />
             <End Role="TB_Producto" EntitySet="TB_Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Tarjet__idUsu__3B75D760" Association="Self.FK__TB_Tarjet__idUsu__3B75D760">
+          <AssociationSet Name="FK__TB_Tarjet__idUsu__4F7CD00D" Association="Self.FK__TB_Tarjet__idUsu__4F7CD00D">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_Tarjetas" EntitySet="TB_Tarjetas" />
           </AssociationSet>
@@ -292,6 +294,7 @@
           <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nomCategoria" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TB_Producto" Relationship="Self.FK__TB_Produc__idCat__3A81B327" FromRole="TB_Categoria" ToRole="TB_Producto" />
+          <Property Name="estado" Type="Int32" />
         </EntityType>
         <EntityType Name="TB_ComprobantePago">
           <Key>
@@ -538,6 +541,16 @@
             <Parameter Name="idTarjeta" Mode="In" Type="Int32" />
             <Parameter Name="total" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="usp_Admin_ActualizaCategoria">
+            <Parameter Name="idcat" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Admin_CrearCategoria">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Admin_EliminaCategoria">
+            <Parameter Name="idcat" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="usp_ListarProducto_Result">
           <Property Type="Int32" Name="idProd" Nullable="false" />
@@ -618,6 +631,7 @@
           <EntitySetMapping Name="TB_Categoria">
             <EntityTypeMapping TypeName="GameStoreModel.TB_Categoria">
               <MappingFragment StoreEntitySet="TB_Categoria">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
                 <ScalarProperty Name="nomCategoria" ColumnName="nomCategoria" />
               </MappingFragment>
@@ -687,8 +701,6 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_AgregarCarrito" FunctionName="GameStoreModel.Store.usp_AgregarCarrito" />
           <FunctionImportMapping FunctionImportName="usp_CrearUsuario" FunctionName="GameStoreModel.Store.usp_CrearUsuario" />
-          <FunctionImportMapping FunctionImportName="usp_InsertaProducto" FunctionName="GameStoreModel.Store.usp_InsertaProducto" />
-          <FunctionImportMapping FunctionImportName="usp_InsertarCategoria" FunctionName="GameStoreModel.Store.usp_InsertarCategoria" />
           <FunctionImportMapping FunctionImportName="usp_ListarProducto" FunctionName="GameStoreModel.Store.usp_ListarProducto">
             <ResultMapping>
               <ComplexTypeMapping TypeName="GameStoreModel.usp_ListarProducto_Result">
@@ -763,6 +775,9 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_Pagar" FunctionName="GameStoreModel.Store.usp_Pagar" />
+          <FunctionImportMapping FunctionImportName="usp_Admin_ActualizaCategoria" FunctionName="GameStoreModel.Store.usp_Admin_ActualizaCategoria" />
+          <FunctionImportMapping FunctionImportName="usp_Admin_CrearCategoria" FunctionName="GameStoreModel.Store.usp_Admin_CrearCategoria" />
+          <FunctionImportMapping FunctionImportName="usp_Admin_EliminaCategoria" FunctionName="GameStoreModel.Store.usp_Admin_EliminaCategoria" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -58,5 +58,27 @@ namespace APP_MVC_ServicioWCF
         {
             return db.usp_ListarCategoria().ToList();
         }
+
+        void IServicioProductos.InsertaCategoria(Categoria obj)
+        {
+            db.Database.ExecuteSqlCommand("EXEC usp_Admin_CrearCategoria @nombre",
+                new SqlParameter("@nombre", obj.nomCategoria)
+                );
+        }
+
+        void IServicioProductos.ActualizaCategoria(Categoria obj)
+        {
+            db.Database.ExecuteSqlCommand("EXEC usp_Admin_ActualizaCategoria @idcat,@nombre",
+                new SqlParameter("@idcat", obj.idCategoria),
+                new SqlParameter("@nombre", obj.nomCategoria)
+                );
+        }
+
+        void IServicioProductos.EliminaCategoria(int id)
+        {
+            db.Database.ExecuteSqlCommand("EXEC usp_Admin_EliminaCategoria @idcat",
+                new SqlParameter("@idcat", id)
+                );
+        }
     }
 }

@@ -12,4 +12,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Producto" nillable="true" type="tns:Producto" />
+  <xs:complexType name="Categoria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idCategoria" type="xs:int" />
+      <xs:element minOccurs="0" name="nomCategoria" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Categoria" nillable="true" type="tns:Categoria" />
 </xs:schema>

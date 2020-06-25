@@ -15,147 +15,6 @@ namespace APP_MVC_GStore.ReferenciaProductoAdm {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="usp_Admin_ListarProducto_Result", Namespace="http://schemas.datacontract.org/2004/07/APP_MVC_Datos.Model")]
-    [System.SerializableAttribute()]
-    public partial class usp_Admin_ListarProducto_Result : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string descripcionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string fotoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idProdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nomCategoriaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nomProdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal precioField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int stockField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string descripcion {
-            get {
-                return this.descripcionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.descripcionField, value) != true)) {
-                    this.descripcionField = value;
-                    this.RaisePropertyChanged("descripcion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string foto {
-            get {
-                return this.fotoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.fotoField, value) != true)) {
-                    this.fotoField = value;
-                    this.RaisePropertyChanged("foto");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int idProd {
-            get {
-                return this.idProdField;
-            }
-            set {
-                if ((this.idProdField.Equals(value) != true)) {
-                    this.idProdField = value;
-                    this.RaisePropertyChanged("idProd");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string nomCategoria {
-            get {
-                return this.nomCategoriaField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.nomCategoriaField, value) != true)) {
-                    this.nomCategoriaField = value;
-                    this.RaisePropertyChanged("nomCategoria");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string nomProd {
-            get {
-                return this.nomProdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.nomProdField, value) != true)) {
-                    this.nomProdField = value;
-                    this.RaisePropertyChanged("nomProd");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal precio {
-            get {
-                return this.precioField;
-            }
-            set {
-                if ((this.precioField.Equals(value) != true)) {
-                    this.precioField = value;
-                    this.RaisePropertyChanged("precio");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int stock {
-            get {
-                return this.stockField;
-            }
-            set {
-                if ((this.stockField.Equals(value) != true)) {
-                    this.stockField = value;
-                    this.RaisePropertyChanged("stock");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Producto", Namespace="http://schemas.datacontract.org/2004/07/APP_MVC_ServicioWCF")]
     [System.SerializableAttribute()]
     public partial class Producto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -297,9 +156,9 @@ namespace APP_MVC_GStore.ReferenciaProductoAdm {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="usp_ListarCategoria_Result", Namespace="http://schemas.datacontract.org/2004/07/APP_MVC_Datos.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Categoria", Namespace="http://schemas.datacontract.org/2004/07/APP_MVC_ServicioWCF")]
     [System.SerializableAttribute()]
-    public partial class usp_ListarCategoria_Result : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Categoria : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -361,10 +220,10 @@ namespace APP_MVC_GStore.ReferenciaProductoAdm {
     public interface IServicioProductos {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/Productos", ReplyAction="http://tempuri.org/IServicioProductos/ProductosResponse")]
-        APP_MVC_GStore.ReferenciaProductoAdm.usp_Admin_ListarProducto_Result[] Productos();
+        APP_MVC_Datos.Model.usp_Admin_ListarProducto_Result[] Productos();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/Productos", ReplyAction="http://tempuri.org/IServicioProductos/ProductosResponse")]
-        System.Threading.Tasks.Task<APP_MVC_GStore.ReferenciaProductoAdm.usp_Admin_ListarProducto_Result[]> ProductosAsync();
+        System.Threading.Tasks.Task<APP_MVC_Datos.Model.usp_Admin_ListarProducto_Result[]> ProductosAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/InsertaProducto", ReplyAction="http://tempuri.org/IServicioProductos/InsertaProductoResponse")]
         void InsertaProducto(APP_MVC_GStore.ReferenciaProductoAdm.Producto obj);
@@ -385,10 +244,28 @@ namespace APP_MVC_GStore.ReferenciaProductoAdm {
         System.Threading.Tasks.Task EliminaProductoAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/Categorias", ReplyAction="http://tempuri.org/IServicioProductos/CategoriasResponse")]
-        APP_MVC_GStore.ReferenciaProductoAdm.usp_ListarCategoria_Result[] Categorias();
+        APP_MVC_Datos.Model.usp_ListarCategoria_Result[] Categorias();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/Categorias", ReplyAction="http://tempuri.org/IServicioProductos/CategoriasResponse")]
-        System.Threading.Tasks.Task<APP_MVC_GStore.ReferenciaProductoAdm.usp_ListarCategoria_Result[]> CategoriasAsync();
+        System.Threading.Tasks.Task<APP_MVC_Datos.Model.usp_ListarCategoria_Result[]> CategoriasAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/InsertaCategoria", ReplyAction="http://tempuri.org/IServicioProductos/InsertaCategoriaResponse")]
+        void InsertaCategoria(APP_MVC_GStore.ReferenciaProductoAdm.Categoria obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/InsertaCategoria", ReplyAction="http://tempuri.org/IServicioProductos/InsertaCategoriaResponse")]
+        System.Threading.Tasks.Task InsertaCategoriaAsync(APP_MVC_GStore.ReferenciaProductoAdm.Categoria obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/ActualizaCategoria", ReplyAction="http://tempuri.org/IServicioProductos/ActualizaCategoriaResponse")]
+        void ActualizaCategoria(APP_MVC_GStore.ReferenciaProductoAdm.Categoria obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/ActualizaCategoria", ReplyAction="http://tempuri.org/IServicioProductos/ActualizaCategoriaResponse")]
+        System.Threading.Tasks.Task ActualizaCategoriaAsync(APP_MVC_GStore.ReferenciaProductoAdm.Categoria obj);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/EliminaCategoria", ReplyAction="http://tempuri.org/IServicioProductos/EliminaCategoriaResponse")]
+        void EliminaCategoria(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioProductos/EliminaCategoria", ReplyAction="http://tempuri.org/IServicioProductos/EliminaCategoriaResponse")]
+        System.Threading.Tasks.Task EliminaCategoriaAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -418,11 +295,11 @@ namespace APP_MVC_GStore.ReferenciaProductoAdm {
                 base(binding, remoteAddress) {
         }
         
-        public APP_MVC_GStore.ReferenciaProductoAdm.usp_Admin_ListarProducto_Result[] Productos() {
+        public APP_MVC_Datos.Model.usp_Admin_ListarProducto_Result[] Productos() {
             return base.Channel.Productos();
         }
         
-        public System.Threading.Tasks.Task<APP_MVC_GStore.ReferenciaProductoAdm.usp_Admin_ListarProducto_Result[]> ProductosAsync() {
+        public System.Threading.Tasks.Task<APP_MVC_Datos.Model.usp_Admin_ListarProducto_Result[]> ProductosAsync() {
             return base.Channel.ProductosAsync();
         }
         
@@ -450,12 +327,36 @@ namespace APP_MVC_GStore.ReferenciaProductoAdm {
             return base.Channel.EliminaProductoAsync(id);
         }
         
-        public APP_MVC_GStore.ReferenciaProductoAdm.usp_ListarCategoria_Result[] Categorias() {
+        public APP_MVC_Datos.Model.usp_ListarCategoria_Result[] Categorias() {
             return base.Channel.Categorias();
         }
         
-        public System.Threading.Tasks.Task<APP_MVC_GStore.ReferenciaProductoAdm.usp_ListarCategoria_Result[]> CategoriasAsync() {
+        public System.Threading.Tasks.Task<APP_MVC_Datos.Model.usp_ListarCategoria_Result[]> CategoriasAsync() {
             return base.Channel.CategoriasAsync();
+        }
+        
+        public void InsertaCategoria(APP_MVC_GStore.ReferenciaProductoAdm.Categoria obj) {
+            base.Channel.InsertaCategoria(obj);
+        }
+        
+        public System.Threading.Tasks.Task InsertaCategoriaAsync(APP_MVC_GStore.ReferenciaProductoAdm.Categoria obj) {
+            return base.Channel.InsertaCategoriaAsync(obj);
+        }
+        
+        public void ActualizaCategoria(APP_MVC_GStore.ReferenciaProductoAdm.Categoria obj) {
+            base.Channel.ActualizaCategoria(obj);
+        }
+        
+        public System.Threading.Tasks.Task ActualizaCategoriaAsync(APP_MVC_GStore.ReferenciaProductoAdm.Categoria obj) {
+            return base.Channel.ActualizaCategoriaAsync(obj);
+        }
+        
+        public void EliminaCategoria(int id) {
+            base.Channel.EliminaCategoria(id);
+        }
+        
+        public System.Threading.Tasks.Task EliminaCategoriaAsync(int id) {
+            return base.Channel.EliminaCategoriaAsync(id);
         }
     }
 }

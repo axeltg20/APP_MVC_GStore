@@ -53,10 +53,12 @@ namespace APP_MVC_GStore.Controllers
             }
         }
 
-        public ActionResult Actualizar()
+        public ActionResult Actualizar(int id)
         {
+            var productos = proxy.Productos();
+            var std = productos.Where(p => p.idProd == id).FirstOrDefault();
             ViewBag.categorias = new SelectList(proxy.Categorias(), "idCategoria", "nomCategoria");
-            return View();
+            return View(std);
         }
 
         [HttpPost]
@@ -99,6 +101,88 @@ namespace APP_MVC_GStore.Controllers
         {
             proxy.EliminaProducto(id);
             return RedirectToAction("Productos");
+        }
+
+        public ActionResult Categorias()
+        {
+            return View(proxy.Categorias().ToList());
+        }
+
+        public ActionResult AgregarCategoria()
+        {
+            return View(new Categoria());
+        }
+
+        [HttpPost]
+        public ActionResult AgregarCategoria(Categoria obj)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    proxy.InsertaCategoria(obj);
+                }
+                return RedirectToAction("Categorias");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult ActualizarCategoria(int id)
+        {
+            var categorias = proxy.Categorias();
+            var std = categorias.Where(c => c.idCategoria == id).FirstOrDefault();
+            return View(std);
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarCategoria(Categoria obj)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    proxy.ActualizaCategoria(obj);
+                }
+                return RedirectToAction("Categorias");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult EmployeeDetailsEntities()
+        {
+            /*try
+             {
+                 if (ModelState.IsValid)
+                 {
+                     proxy.EliminaProducto(id);
+                 }
+                 return RedirectToAction("Productos");
+             }
+             catch
+             {*/
+            //obj = proxy.Productos().ToList();
+            return View();
+            //}
+        }
+
+        [HttpPost, ActionName("Eliminar")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EliminarCategoriaConfirmed(int id)
+        {
+            proxy.EliminaCategoria(id);
+            return RedirectToAction("Categorias");
+        }
+        public JsonResult EliminarCategoria(int Id)
+        {
+            proxy.EliminaCategoria(Id);
+            return Json(new { status = "Success" });
+
         }
     }
 }
