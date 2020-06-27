@@ -168,6 +168,7 @@
     <Content Include="Content\estilos.css" />
     <Content Include="Content\Images\default.png" />
     <Content Include="Content\Images\electron-640x404.jpg" />
+    <Content Include="Content\Images\Lupa.png" />
     <Content Include="Content\Images\rs_fb.png" />
     <Content Include="Content\Images\rs_tw.png" />
     <Content Include="Content\Images\rs_wpp.png" />
@@ -190,7 +191,6 @@
     <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Content\Sestilos.scss" />
     <Content Include="Properties\DataSources\APP_MVC_Datos.Model.usp_Admin_ListarProducto_Result.datasource" />
     <Content Include="Properties\DataSources\APP_MVC_Datos.Model.usp_ListarCategoria_Result.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

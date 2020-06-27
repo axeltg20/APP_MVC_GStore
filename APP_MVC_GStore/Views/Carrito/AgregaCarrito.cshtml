@@ -45,8 +45,6 @@
                     <th> </th>
                     <td>@String.Format("{0:C}", (item.cantidad * item.producto.precio))</td>
                     <th> </th>
-                    <td><a class="btn btn-danger" href="@Url.Action("Delete", "Carrito", new { Id = item.producto.idProd })">Eliminar Producto</a></td>
-                    <th> </th>
                 </tr>
             }
         }
@@ -55,7 +53,7 @@
     <tfoot>
         <tr>
             <th colspan="4">Total</th>
-            <th id="total">@String.Format("{0:c}", total)</th>
+            <th id="@ViewBag.total">@String.Format("{0:c}", total)</th>
         </tr>
     </tfoot>
 </table>
@@ -82,13 +80,14 @@
                                 <label for="cvv">CVV</label>
                                 <input type="text" class="form-control" id="cvv">
                             </div>
+
                             <div class="form-group" id="card-number-field">
                                 <label for="cardNumber">Card Number</label>
-                                    <input type="text" class="form-control" value="@ViewBag.nroTarjeta">
+                                <input type="text" class="form-control" id="@ViewBag.nroTarjeta">
                             </div>
                             <div class="form-group" id="expiration-date">
                                 <label>Expiration Date</label>
-                                <input type="text"  class="form-control" />
+                                <input type="text" class="form-control" />
                             </div>
                         </form>
                     </div>
@@ -120,14 +119,15 @@
             *@
 
             <div class="modal-footer">
-                    <div class="payment">
-                        <form>
-                            <div class="form-group" id="pay-now">
-                                <a href="#" class="btn btn-success" id="confirmarCompra">Pagar</a>
-                                <a class="btn btn-primary" id="agregarTarjeta">Agregar Tarjeta</a>
-                            </div>
-                        </form>
-                    </div>
+                <div class="payment">
+                    <form>
+                        <div class="form-group" id="pay-now">
+                            <input type="submit" value="Pagar" />
+                            @*<a href="#" class="btn btn-success" id="confirmarCompra">Pagar</a>*@
+                            <a class="btn btn-primary" id="agregarTarjeta">Agregar Tarjeta</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -148,19 +148,20 @@
         /*var idUsuario = $(document).parent().parent().find(".idUsuario").val();
         var nombreTitular = $(document).parent().parent().find(".nombreTitular").val();;
         var apellidoTitular = $(document).parent().parent().find(".apellidoTitular").val();;
-        var nroTarjeta = $(document).parent().parent().find(".nroTarjeta").val();;
+        */
+        var nroTarjeta = $(document).parent().parent().find(".nroTarjeta").val();/*;
         var fechaExpiracion = $(document).parent().parent().find(".fechaExpiracion").val();;
         var ccv = $(document).parent().parent().find(".ccv").val();
         */
 
-            $("#comprarTodo").click(function () {
-                $("#myModal").modal('show');
-                $("#agregarTarjeta").attr("href", "@Url.Action("AgregarTarjeta", "Pagos")");
-            });
-        $("#confirmarCompra").click(function () {
-            var url = "@Url.Action("Pagar", "Carrito", new { total = total })";
-            $("#confirmarCompra").attr("href", url);
+        $("#comprarTodo").click(function () {
+            $("#myModal").modal('show');
+            /* $("#agregarTarjeta").attr("href", "Url.Action("AgregarTarjeta", "Pagos")");*/
         });
+        /*$("#confirmarCompra").click(function () {
+            var url = "Url.Action("Pagar", "Carrito")";
+            $("#confirmarCompra").attr("href", url);
+        });*/
 
     });
 

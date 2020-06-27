@@ -17,10 +17,7 @@ namespace APP_MVC_GStore.Controllers
     {
         GameStoreEntities db = new GameStoreEntities();
         Modelos modelo = new Modelos();
-        public ActionResult ListaProductos()
-        {
-            return View(db.TB_Producto.ToList().OrderBy(x => x.nomProd));
-        }
+      
 
         public int getIndex(int id)
         {
@@ -36,6 +33,11 @@ namespace APP_MVC_GStore.Controllers
         }
         public ActionResult AgregaCarrito()
         {
+            int nroTarjeta= 0;
+            double total=0;
+            ViewBag.nroTarjeta = nroTarjeta;
+            ViewBag.total = total;
+            Pagar(nroTarjeta, total);
             return View();
         }
         [HttpPost]
@@ -71,22 +73,22 @@ namespace APP_MVC_GStore.Controllers
             return View("AgregaCarrito");
         }
 
-
-        public List<TB_Tarjetas> ListarTarjetas(Modelos tarjetas)
+        public ActionResult Pagar(int idTarjeta, double total)
         {
-            List<TB_Tarjetas> lista = new List<TB_Tarjetas>();
-            lista = tarjetas.ModelTarjetas.ToList();
-            return lista;
-        }
-
-
-        public ActionResult Pagar(double total)
-        {
-            int idTarjeta;
-            idTarjeta = 1;
             int totals = Convert.ToInt32(total);
-            return View(db.usp_Pagar(idTarjeta, totals));
+            db.usp_Pagar(idTarjeta, totals);
+            return View();
         }
+
+
+        public ActionResult ListaProductos(string nombre)
+        {
+            if (nombre == null) { nombre = string.Empty; }
+            ViewBag.nombre = nombre;
+            var lista = from p in db.TB_Producto where p.nomProd.Contains(nombre) select p;
+            return View(lista.ToList());
+        }
+
 
     }
 }

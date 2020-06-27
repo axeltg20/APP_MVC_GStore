@@ -4,30 +4,32 @@
 }
 
 <h2>ListaProductos</h2>
+<link rel="stylesheet" type="text/css" href="~/Content/estilos.css" media="screen" />
+<br />
+@using (Html.BeginForm())
+{
+    <div class="buscador">
+        <strong>Ingrese Nombre del producto :</strong>
+        <input type="text" name="nombre" value="@ViewBag.nombre"/>
+        <strong></strong>
+        <input type="image" value="Consultar" src="~/Content/Images/Lupa.png"  class="btnBuscar" />
+        <br />
+    </div>
+}
+
+
 
 
 <table class="table">
     <tr>
-        <th>
+        <th class="hidden">
             @Html.DisplayNameFor(model => model.idProd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nomProd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.foto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TB_Categoria.nomCategoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.stock)
+            <span>Dados</span>
         </th>
         <th></th>
     </tr>
@@ -35,26 +37,18 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td class="idProductoGet">
+            <td class="hidden idProductoGet">
                 @Html.DisplayFor(modelItem => item.idProd)
             </td>
+            <td>
+                <img src="@item.foto" />
+            </td>
             <td class="producto">
-                @Html.DisplayFor(modelItem => item.nomProd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.foto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TB_Categoria.nomCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.stock)
+                <span>@Html.DisplayFor(modelItem => item.nomProd)</span><br />
+                <span>@Html.DisplayFor(modelItem => item.precio)</span><br />
+                <span>@Html.DisplayFor(modelItem => item.descripcion)</span><br />
+                <span>@Html.DisplayFor(modelItem => item.TB_Categoria.nomCategoria)</span><br />
+                <span>@Html.DisplayFor(modelItem => item.stock)</span><br />
             </td>
             <td>
                 <a href="#" class="btn btn-success" id=@item.idProd>Comprar YA!</a>
