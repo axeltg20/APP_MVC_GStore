@@ -1,62 +1,49 @@
-﻿
+﻿@model APP_MVC_Datos.Model.TB_Producto
+
 @{
-    ViewBag.Title = "AgregaCarrito";
+    ViewBag.Title = "ComprarYa";
 }
 
-<h2>AgregaCarrito</h2>
+<h2>ComprarYa</h2>
+
 <link rel="stylesheet" type="text/css" href="~/Content/estilos.css" media="screen" />
 <div>
-    <a class="btn btn-primary" href="@Url.Action("ListaProductos", "Carrito")">Seguir Comprando</a>
-    <a class="btn btn-success" id="comprarTodo">Comprar Todo</a>
-</div>
-<table class="table active">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th> </th>
-            <th>Nombre</th>
-            <th> </th>
-            <th>Precio</th>
-            <th> </th>
-            <th>Cantidad</th>
-            <th> </th>
-            <th>Total</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            double total = 0;
-        }
-        @if (Session["carrito"] != null)
-        {
+    <h4>TB_Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
 
-            foreach (var item in (List<APP_MVC_GStore.Models.CarritoItem>)Session["carrito"])
-            {
-                total += (double)(item.cantidad * item.producto.precio);
-                <tr>
-                    <td>@item.producto.idProd</td>
-                    <th> </th>
-                    <td>@item.producto.nomProd</td>
-                    <th> </th>
-                    <td>@String.Format("{0:C}", item.producto.precio)</td>
-                    <th> </th>
-                    <td>@item.cantidad</td>
-                    <th> </th>
-                    <td>@String.Format("{0:C}", (item.cantidad * item.producto.precio))</td>
-                    <th> </th>
-                </tr>
-            }
-        }
-    </tbody>
-    <tr></tr>
-    <tfoot>
-        <tr>
-            <th colspan="4">Total</th>
-            <th id="@ViewBag.total">@String.Format("{0:c}", total)</th>
-        </tr>
-    </tfoot>
-</table>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.foto)" />
+        </dd>
+
+    </dl>
+    <div>
+        <span>
+            @Html.DisplayNameFor(model => model.nomProd)
+            <strong> :  </strong>
+            @Html.DisplayFor(model => model.nomProd)
+        </span><br />
+        <span>
+            @Html.DisplayNameFor(model => model.precio)
+            <strong> :  </strong>
+            @Html.DisplayFor(model => model.precio)
+        </span><br />
+        <span>
+            @Html.DisplayNameFor(model => model.descripcion)
+            <strong> :  </strong>
+            @Html.DisplayFor(model => model.descripcion)
+        </span><br />
+    </div>
+</div>
+<p>
+    <a class="btn btn-danger" href="@Url.Action("ListaProductos", "Carrito")">Volver</a>
+    <a class="btn btn-success" href="#" id="comprarTodo">Pagar</a>
+</p>
+
+
+
+
 
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
@@ -109,23 +96,18 @@
 </div>
 
 
-@*Seccion JQUERY/JAVASCRIPT*@
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
 
-        
-        var nroTarjeta = $(document).parent().parent().find(".nroTarjeta").val();
-       
+
         $("#comprarTodo").click(function () {
             $("#myModal").modal('show');
-            @*$("#agregarTarjeta").attr("href", "@Url.Action("AgregarTarjeta", "Pagos")");*@
         });
         $("#confirmarCompra").click(function () {
-            var url = "@Url.Action("Pagar", "Carrito", new { total = total})";
+            var url = "@Url.Action("Pagar", "Carrito", new { total = Model.precio})";
             $("#confirmarCompra").attr("href", url);
         });
 

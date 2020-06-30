@@ -1,5 +1,6 @@
 ﻿using APP_MVC_Datos.Model;
 using APP_MVC_GStore.Models;
+using APP_MVC_GStore.ReferenciaProductoAdm;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,13 +32,28 @@ namespace APP_MVC_GStore.Controllers
             }
             return -1;
         }
+
+       
+        public ActionResult ComprarYa(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TB_Producto productos = db.TB_Producto.Find(id);
+            if (productos == null)
+            {
+                return HttpNotFound();
+            }
+            return View(productos);
+        }
+
+
+
+
+
         public ActionResult AgregaCarrito()
         {
-            int nroTarjeta= 0;
-            double total=0;
-            ViewBag.nroTarjeta = nroTarjeta;
-            ViewBag.total = total;
-            Pagar(nroTarjeta, total);
             return View();
         }
         [HttpPost]
@@ -73,8 +89,9 @@ namespace APP_MVC_GStore.Controllers
             return View("AgregaCarrito");
         }
 
-        public ActionResult Pagar(int idTarjeta, double total)
+        public ActionResult Pagar(double total)
         {
+            int idTarjeta = 1;
             int totals = Convert.ToInt32(total);
             db.usp_Pagar(idTarjeta, totals);
             return View();

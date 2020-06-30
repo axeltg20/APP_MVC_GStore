@@ -236,6 +236,7 @@
     <Content Include="Views\Admin\AgregarCategoria.cshtml" />
     <Content Include="Views\Admin\Categorias.cshtml" />
     <Content Include="Views\Admin\ActualizarCategoria.cshtml" />
+    <Content Include="Views\Carrito\ComprarYa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
