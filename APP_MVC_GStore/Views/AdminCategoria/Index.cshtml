@@ -1,0 +1,39 @@
+﻿@model IEnumerable<APP_MVC_Datos.Model.TB_Categoria>
+
+@{
+    ViewBag.Title = "Admin - Categorias";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Listado de Categorias</h2>
+
+<p>
+    @Html.ActionLink("Crear nueva categoría", "Create",null, new { @class = "btn btn-info" })
+</p>
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <tr>
+        <th class="text-center info">
+            Id de Categorías
+        </th>
+        <th class="text-center">
+            Nombre de Categorías
+        </th>
+        <th class="text-center warning">Administrar Categorías</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr class="text-center">
+    <td class="info">
+        @Html.DisplayFor(modelItem => item.idCategoria)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.nomCategoria)
+    </td>
+    <td class="warning">
+        @Html.ActionLink("Actualizar", "Edit", null, new { id = item.idCategoria }, new { @class = "btn btn-success" }) |
+        @Html.ActionLink("Eliminar", "Delete", null, new { id = item.idCategoria }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
+}
+
+</table>

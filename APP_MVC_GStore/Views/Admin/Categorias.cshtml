@@ -33,67 +33,7 @@
                 @Html.ActionLink("Editar", "ActualizarCategoria", new { id = item.idCategoria }) |
                 @Html.ActionLink("Eliminar", "EliminarCategoria", new { id = item.idCategoria })
             </td>
-            <td>
-                <a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.idCategoria)"><i class="glyphicon glyphicon-trash"></i> </a>
-            </td>
 </tr>
     }
 
 </table>
-
-
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a href="#" class="close" data-dismiss="modal">&times;</a>
-                <h3 class="modal-title">Delete Employee</h3>
-            </div>
-            <div class="modal-body">
-                <h4>Are you sure you want to Remove this Employee?</h4>
-
-
-
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <a href="#" class="btn btn-success" onclick="DeleteEmployee">Confirm</a>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-@*hidden field for storing current employeeId*@
-<input type="hidden" id="hiddenEmployeeId" />
-
-
-@section scripts{
-    <script>
-        var ConfirmDelete = function (idCategoria) {
-            $("#hiddenEmployeeId").val(idCategoria);
-            $("#myModal").modal('show');
-
-        }
-
-        var DeleteEmployee = function () {
-
-            var empId = $("#hiddenEmployeeId").val();
-
-            $.ajax({
-
-                type: "POST",
-                url: "/AdminController/EliminarCategoria",
-                data: { idCategoria: empId },
-                success: function (result) {
-
-                    $("#myModal").modal("hide");
-                    $("#row_" + empId).remove();
-                }
-            })
-        }
-    </script>
-}

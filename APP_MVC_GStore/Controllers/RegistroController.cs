@@ -53,7 +53,7 @@ namespace APP_MVC_GStore.Controllers
                 /*Creaciono de GUID (Identificador Unico Global) para el codigo de verificación*/
                 emailverif = Guid.NewGuid();
                 /*Cifrado de contraseña*/
-                con = APP_MVC_GStore.Models.EncriptarContra.textToEncrypt(con);
+                //con = APP_MVC_GStore.Models.EncriptarContra.textToEncrypt(con);
                 /*Registro final*/
                 var registrar = db.usp_CrearUsuario(nom, ape, ema, emailverif, con);
                /*Enviar Correo de confirmacion*/
@@ -77,10 +77,9 @@ namespace APP_MVC_GStore.Controllers
         [HttpPost]
         public ActionResult Ingresar(LoginUsuario login)
         {
-            string con = APP_MVC_GStore.Models.EncriptarContra.textToEncrypt(login.Password);
+            
             //Verificar ingreso de datos
-            bool Isvalid = db.TB_Usuario.Any(x => x.email == login.Correo && x.emailverficiado == true && x.contra == con); ;
-            //bool Isvalid = db.TB_Usuario.Any(x => x.email == login.Correo && x.contra == login.Password);
+            bool Isvalid = db.TB_Usuario.Any(x => x.email == login.Correo && x.emailverficiado == true && x.contra == login.Password); ;
             if (Isvalid)
             {
                 int timeout = login.Rememberme ? 60 : 5; // Timeout in minutes, 60 = 1 hour.  

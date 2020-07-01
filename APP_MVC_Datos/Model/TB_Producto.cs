@@ -28,7 +28,6 @@ namespace APP_MVC_Datos.Model
         public string foto { get; set; }
         public int idCategoria { get; set; }
         public int stock { get; set; }
-        public int estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TB_Carrito> TB_Carrito { get; set; }

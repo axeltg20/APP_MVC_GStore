@@ -137,10 +137,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdminCategoriaController.cs" />
+    <Compile Include="Controllers\AdminProductoController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\PagosController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Global.asax.cs">
@@ -222,8 +222,6 @@
     <Content Include="Views\Registro\Registrar.cshtml" />
     <Content Include="Views\Registro\RegistroConfirmado.cshtml" />
     <Content Include="Views\Registro\VerificacionUsuario.cshtml" />
-    <Content Include="Views\Login\Ingresar.cshtml" />
-    <Content Include="Views\Login\Seguridad.cshtml" />
     <Content Include="Views\Registro\Seguridad.cshtml" />
     <Content Include="Views\Admin\Productos.cshtml" />
     <Content Include="Views\Admin\Agregar.cshtml" />
@@ -237,6 +235,16 @@
     <Content Include="Views\Admin\Categorias.cshtml" />
     <Content Include="Views\Admin\ActualizarCategoria.cshtml" />
     <Content Include="Views\Carrito\ComprarYa.cshtml" />
+    <Content Include="Views\Admin\EliminarCategoria.cshtml" />
+    <Content Include="Views\AdminProducto\Create.cshtml" />
+    <Content Include="Views\AdminProducto\Delete.cshtml" />
+    <Content Include="Views\AdminProducto\Edit.cshtml" />
+    <Content Include="Views\AdminCategoria\Create.cshtml" />
+    <Content Include="Views\AdminCategoria\Delete.cshtml" />
+    <Content Include="Views\AdminCategoria\Edit.cshtml" />
+    <Content Include="Views\AdminCategoria\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\AdminProducto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

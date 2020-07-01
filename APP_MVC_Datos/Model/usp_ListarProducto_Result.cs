@@ -18,6 +18,5 @@ namespace APP_MVC_Datos.Model
         public decimal precio { get; set; }
         public string nomCategoria { get; set; }
         public int stock { get; set; }
-        public int estado { get; set; }
     }
 }

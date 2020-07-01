@@ -1,0 +1,69 @@
+﻿@model IEnumerable<APP_MVC_Datos.Model.TB_Producto>
+
+@{
+    ViewBag.Title = "Admin - Productos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Listado de Productos</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo producto", "Create", null, new { @class = "btn btn-info" })
+</p>
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <tr>
+        <th class="text-center info">
+            Id de Producto
+        </th>
+        <th class="text-center">
+            Nombre de Producto
+        </th>
+        <th class="text-center">
+            Precio
+        </th>
+        <th class="text-center">
+            Descripcion
+        </th>
+        <th class="text-center">
+            Imagen
+        </th>
+        <th class="text-center">
+            Stock
+        </th>
+        <th class="text-center">
+            Categoria
+        </th>
+        <th class="text-center warning">Administrar Productos</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr class="text-center">
+    <td class="info">
+        @Html.DisplayFor(modelItem => item.idProd)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.nomProd)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.precio)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.descripcion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.foto)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.stock)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TB_Categoria.nomCategoria)
+    </td>
+    <td class="warning">
+        @Html.ActionLink("Actualizar", "Edit", null, new { id = item.idCategoria }, new { @class = "btn btn-success" }) |
+        @Html.ActionLink("Eliminar", "Delete", null, new { id = item.idCategoria }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
+}
+
+</table>

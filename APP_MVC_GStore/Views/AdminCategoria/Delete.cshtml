@@ -1,0 +1,32 @@
+﻿@model APP_MVC_Datos.Model.TB_Categoria
+
+@{
+    ViewBag.Title = "Admin - Eliminar Categoria";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Borrado de Categorías</h2>
+
+<h3>Estas seguro que quieres eliminar esta categoría?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <strong>Nombre de Categoría</strong>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomCategoria)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+    @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-primary" })
+</div>
+    }
+</div>

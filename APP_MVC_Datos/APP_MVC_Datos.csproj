@@ -107,32 +107,31 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Model\GStoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>GStoreModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Model\GStoreModel.edmx.diagram">
       <DependentUpon>GStoreModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
     <Content Include="Model\GStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GStoreModel.Context.cs</LastGenOutput>
       <DependentUpon>GStoreModel.edmx</DependentUpon>
+      <LastGenOutput>GStoreModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\GStoreModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>GStoreModel.edmx</DependentUpon>
       <LastGenOutput>GStoreModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
