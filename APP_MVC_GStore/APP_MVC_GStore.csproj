@@ -132,11 +132,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Connected Services\ReferenciaProductoAdm\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AdminCategoriaController.cs" />
     <Compile Include="Controllers\AdminProductoController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
@@ -155,12 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BD\GStore.sql" />
-    <None Include="Connected Services\ReferenciaProductoAdm\configuration91.svcinfo" />
-    <None Include="Connected Services\ReferenciaProductoAdm\configuration.svcinfo" />
-    <None Include="Connected Services\ReferenciaProductoAdm\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -178,19 +167,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos.wsdl" />
-    <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ReferenciaProductoAdm\ServicioProductos3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Properties\DataSources\APP_MVC_Datos.Model.usp_Admin_ListarProducto_Result.datasource" />
     <Content Include="Properties\DataSources\APP_MVC_Datos.Model.usp_ListarCategoria_Result.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -223,19 +199,11 @@
     <Content Include="Views\Registro\RegistroConfirmado.cshtml" />
     <Content Include="Views\Registro\VerificacionUsuario.cshtml" />
     <Content Include="Views\Registro\Seguridad.cshtml" />
-    <Content Include="Views\Admin\Productos.cshtml" />
-    <Content Include="Views\Admin\Agregar.cshtml" />
-    <Content Include="Views\Admin\Eliminar.cshtml" />
-    <Content Include="Views\Admin\Actualizar.cshtml" />
     <Content Include="Views\Carrito\ListaProductos.cshtml" />
     <Content Include="Views\Pagos\AgregarTarjeta.cshtml" />
     <Content Include="Views\Carrito\Pagar.cshtml" />
     <Content Include="Views\Carrito\AgregaCarrito.cshtml" />
-    <Content Include="Views\Admin\AgregarCategoria.cshtml" />
-    <Content Include="Views\Admin\Categorias.cshtml" />
-    <Content Include="Views\Admin\ActualizarCategoria.cshtml" />
     <Content Include="Views\Carrito\ComprarYa.cshtml" />
-    <Content Include="Views\Admin\EliminarCategoria.cshtml" />
     <Content Include="Views\AdminProducto\Create.cshtml" />
     <Content Include="Views\AdminProducto\Delete.cshtml" />
     <Content Include="Views\AdminProducto\Edit.cshtml" />
@@ -267,9 +235,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ReferenciaProductoAdm\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\APP_MVC_Datos\APP_MVC_Datos.csproj">
