@@ -20,8 +20,7 @@ go
 create table TB_Categoria
 (
 idCategoria int primary key identity,
-nomCategoria varchar(20) not null,
-estado int default(1)
+nomCategoria varchar(20) not null
 )
 go
 
@@ -33,9 +32,8 @@ create table TB_Producto
 	precio money not null,
 	descripcion varchar(max),
 	foto varchar(1024) default (N'/Content/Images/default.png'),
-	idCategoria int  references TB_Categoria not null,
-	stock int default(0) not null,
-	estado int default(1) not null
+	idCategoria int references TB_Categoria not null,
+	stock int default(0) not null
 )
 go
 
@@ -117,7 +115,7 @@ go
 CREATE OR ALTER PROC usp_Admin_ListarProducto
 AS
 BEGIN
-	SELECT p.idProd, p.nomProd, p.precio, p.descripcion, p.foto,c.nomCategoria, p.stock FROM TB_Producto p INNER JOIN tb_categoria c ON p.idCategoria = c.idCategoria WHERE p.estado = 1
+	SELECT p.idProd, p.nomProd, p.precio, p.descripcion, p.foto,c.nomCategoria, p.stock FROM TB_Producto p INNER JOIN tb_categoria c ON p.idCategoria = c.idCategoria
 END
 GO
 
@@ -151,7 +149,7 @@ CREATE OR ALTER PROC usp_Admin_EliminarProducto
 @id INT
 AS
 BEGIN
-	UPDATE TB_Producto SET estado = 1 WHERE idProd = @id
+	DELETE TB_Producto WHERE idProd = @id
 END
 GO
 
@@ -160,7 +158,7 @@ GO
 CREATE OR ALTER PROC usp_ListarCategoria
 AS
 BEGIN
-	SELECT idCategoria,nomCategoria FROM TB_Categoria WHERE estado = 1
+	SELECT idCategoria,nomCategoria FROM TB_Categoria
 END
 GO
 
@@ -185,7 +183,7 @@ CREATE OR ALTER PROC usp_Admin_EliminaCategoria
 @idcat INT
 AS
 BEGIN
-	UPDATE TB_Categoria SET estado=0 WHERE idCategoria=@idcat
+	DELETE TB_Categoria WHERE idCategoria=@idcat
 END
 GO
 
@@ -194,7 +192,7 @@ GO
 create or alter proc usp_ListarProducto
 as
 begin
-	select idProd, nomProd, precio, nomCategoria, stock, p.estado from TB_Producto p inner join tb_categoria c on p.idCategoria = c.idCategoria where p.estado = 1
+	select idProd, nomProd, precio, nomCategoria, stock from TB_Producto p inner join tb_categoria c on p.idCategoria = c.idCategoria
 end
 go
 
@@ -207,7 +205,7 @@ begin
 end
 go
 
-create proc usp_AgregarCarrito
+create or alter proc usp_AgregarCarrito
 @idProd int,
 @cantidad int
 as
