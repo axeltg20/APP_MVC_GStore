@@ -1,6 +1,5 @@
 ﻿using APP_MVC_Datos.Model;
 using APP_MVC_GStore.Models;
-using APP_MVC_GStore.ReferenciaProductoAdm;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -98,11 +97,13 @@ namespace APP_MVC_GStore.Controllers
         }
 
 
-        public ActionResult ListaProductos(string nombre)
+        public ActionResult ListaProductos(string nombre/*, string id*/)
         {
             if (nombre == null) { nombre = string.Empty; }
             ViewBag.nombre = nombre;
-            var lista = from p in db.TB_Producto where p.nomProd.Contains(nombre) select p;
+            //if (id.Equals(null)) { id = string.Empty; }
+            //ViewBag.categoria = new SelectList(db.TB_Categoria, "idCategoria", "nomCategoria", id);
+            var lista = from p in db.TB_Producto where p.nomProd.StartsWith(nombre) /*|| p.idCategoria.Equals(id)*/ select p;
             return View(lista.ToList());
         }
 

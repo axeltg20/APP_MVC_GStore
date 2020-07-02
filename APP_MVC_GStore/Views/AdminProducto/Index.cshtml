@@ -48,10 +48,10 @@
         @Html.DisplayFor(modelItem => item.precio)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.descripcion)
+       @Html.DisplayFor(modelItem => item.descripcion)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.foto)
+        <img width="60" src="@Url.Action("getImage", "AdminProducto", new { id = item.idProd})"/>
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.stock)
@@ -60,8 +60,8 @@
         @Html.DisplayFor(modelItem => item.TB_Categoria.nomCategoria)
     </td>
     <td class="warning">
-        @Html.ActionLink("Actualizar", "Edit", null, new { id = item.idCategoria }, new { @class = "btn btn-success" }) |
-        @Html.ActionLink("Eliminar", "Delete", null, new { id = item.idCategoria }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Actualizar", "Edit", null, new { id = item.idProd }, new { @class = "btn btn-success" }) |
+        @Html.ActionLink("Eliminar", "Delete", null, new { id = item.idProd }, new { @class = "btn btn-danger" })
     </td>
 </tr>
 }

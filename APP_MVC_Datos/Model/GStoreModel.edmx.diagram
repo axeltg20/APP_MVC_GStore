@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3a13348d46074eaa9c9328d72deb6f9b" Name="Diagram1">
+      <Diagram DiagramId="37ce973e9880431896a8c2518c3097ee" Name="Diagram1">
         <EntityTypeShape EntityType="GameStoreModel.TB_Carrito" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GameStoreModel.TB_Categoria" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GameStoreModel.TB_ComprobantePago" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
@@ -13,13 +13,13 @@
         <EntityTypeShape EntityType="GameStoreModel.TB_Producto" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="GameStoreModel.TB_Tarjetas" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GameStoreModel.TB_Usuario" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <AssociationConnector Association="GameStoreModel.FK__TB_Carrit__idpro__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="GameStoreModel.FK__TB_Produc__idCat__3A81B327" ManuallyRouted="false" />
-        <AssociationConnector Association="GameStoreModel.FK__TB_Compro__idUsu__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="GameStoreModel.FK__TB_Detall__idCom__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="GameStoreModel.FK__TB_Detall__idPro__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="GameStoreModel.FK__TB_Direcc__idUsu__412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="GameStoreModel.FK__TB_Tarjet__idUsu__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK__TB_Carrit__idpro__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK__TB_Produc__idCat__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK__TB_Compro__idUsu__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK__TB_Detall__idCom__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK__TB_Detall__idPro__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK__TB_Direcc__idUsu__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK__TB_Tarjet__idUsu__398D8EEE" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

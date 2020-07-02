@@ -8,6 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using APP_MVC_Datos.Model;
 
+using System.Web.Helpers;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
+
+
 namespace APP_MVC_GStore.Controllers
 {
     public class AdminProductoController : Controller
@@ -50,8 +56,12 @@ namespace APP_MVC_GStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idProd,nomProd,precio,descripcion,foto,idCategoria,stock")] TB_Producto tB_Producto)
         {
+            HttpPostedFileBase fileBase = Request.Files[0];
+            WebImage image = new WebImage(fileBase.InputStream);
+            tB_Producto.foto = image.GetBytes();
             if (ModelState.IsValid)
             {
+                
                 db.TB_Producto.Add(tB_Producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -59,6 +69,19 @@ namespace APP_MVC_GStore.Controllers
 
             ViewBag.idCategoria = new SelectList(db.TB_Categoria, "idCategoria", "nomCategoria", tB_Producto.idCategoria);
             return View(tB_Producto);
+        }
+
+        public ActionResult getImage(int id)
+        {
+            TB_Producto producto = db.TB_Producto.Find(id);
+            byte[] byteimage = producto.foto;
+            MemoryStream ms = new MemoryStream(byteimage);
+            Image image = Image.FromStream(ms);
+
+            ms = new MemoryStream();
+            image.Save(ms, ImageFormat.Jpeg);
+            ms.Position = 0;
+            return File(ms, "image/jpg");
         }
 
         // GET: AdminProducto/Edit/5
@@ -84,6 +107,9 @@ namespace APP_MVC_GStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idProd,nomProd,precio,descripcion,foto,idCategoria,stock")] TB_Producto tB_Producto)
         {
+            HttpPostedFileBase fileBase = Request.Files[0];
+            WebImage image = new WebImage(fileBase.InputStream);
+            tB_Producto.foto = image.GetBytes();
             if (ModelState.IsValid)
             {
                 db.Entry(tB_Producto).State = EntityState.Modified;

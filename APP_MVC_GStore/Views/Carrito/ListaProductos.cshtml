@@ -8,13 +8,15 @@
 <br />
 @using (Html.BeginForm())
 {
-    <div class="buscador">
-        <strong>Ingrese Nombre del producto :</strong>
-        <input type="text" name="nombre" value="@ViewBag.nombre"/>
-        <strong></strong>
-        <input type="image" value="Consultar" src="~/Content/Images/Lupa.png"  class="btnBuscar" />
-        <br />
-    </div>
+<div class="buscador">
+    <strong>Ingrese Nombre del producto :</strong>
+    <input type="text" name="nombre" value="@ViewBag.nombre" />
+    @*<br />
+        <strong>Seleccione Categoria :</strong>
+        @Html.DropDownList("id", (SelectList)ViewBag.categoria)*@
+    <input type="image" value="Consultar" src="~/Content/Images/Lupa.png" class="btnBuscar" />
+    <br />
+</div>
 }
 
 
@@ -42,7 +44,7 @@
             </td>
             <td>
                 <a href="@Url.Action("ComprarYa", "Carrito", new { id = item.idProd})">
-                    <img src="@item.foto" />
+                    <img width="60" src="@Url.Action("getImage", "AdminProducto", new { id = item.idProd})" />
                 </a>
             </td>
             <td class="producto">

@@ -14,7 +14,7 @@
 
 
         <dd>
-            <img src="@Html.DisplayFor(model => model.foto)" />
+            <img width="200" src="@Url.Action("getImage", "AdminProducto", new { id = Model.idProd})" />
         </dd>
 
     </dl>

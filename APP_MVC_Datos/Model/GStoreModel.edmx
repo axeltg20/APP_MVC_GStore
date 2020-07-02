@@ -59,7 +59,7 @@
           <Property Name="nomProd" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="precio" Type="money" Nullable="false" />
           <Property Name="descripcion" Type="varchar(max)" />
-          <Property Name="foto" Type="varchar" MaxLength="1024" />
+          <Property Name="foto" Type="image" />
           <Property Name="idCategoria" Type="int" Nullable="false" />
           <Property Name="stock" Type="int" Nullable="false" />
         </EntityType>
@@ -89,7 +89,7 @@
           <Property Name="codigoactivacion" Type="uniqueidentifier" />
           <Property Name="contra" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <Association Name="FK__TB_Carrit__idpro__4AB81AF0">
+        <Association Name="FK__TB_Carrit__idpro__36B12243">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="0..1" />
           <End Role="TB_Carrito" Type="Self.TB_Carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -101,7 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Compro__idUsu__440B1D61">
+        <Association Name="FK__TB_Compro__idUsu__300424B4">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -113,7 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idCom__46E78A0C">
+        <Association Name="FK__TB_Detall__idCom__32E0915F">
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -125,7 +125,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idPro__47DBAE45">
+        <Association Name="FK__TB_Detall__idPro__33D4B598">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -137,7 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Direcc__idUsu__412EB0B6">
+        <Association Name="FK__TB_Direcc__idUsu__2D27B809">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="0..1" />
           <End Role="TB_Direcciones" Type="Self.TB_Direcciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -149,7 +149,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Produc__idCat__3A81B327">
+        <Association Name="FK__TB_Produc__idCat__267ABA7A">
           <End Role="TB_Categoria" Type="Self.TB_Categoria" Multiplicity="1" />
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -161,7 +161,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Tarjet__idUsu__4D94879B">
+        <Association Name="FK__TB_Tarjet__idUsu__398D8EEE">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
           <End Role="TB_Tarjetas" Type="Self.TB_Tarjetas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -243,31 +243,31 @@
           <EntitySet Name="TB_Producto" EntityType="Self.TB_Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Tarjetas" EntityType="Self.TB_Tarjetas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_Usuario" EntityType="Self.TB_Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__TB_Carrit__idpro__4AB81AF0" Association="Self.FK__TB_Carrit__idpro__4AB81AF0">
+          <AssociationSet Name="FK__TB_Carrit__idpro__36B12243" Association="Self.FK__TB_Carrit__idpro__36B12243">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_Carrito" EntitySet="TB_Carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Compro__idUsu__440B1D61" Association="Self.FK__TB_Compro__idUsu__440B1D61">
+          <AssociationSet Name="FK__TB_Compro__idUsu__300424B4" Association="Self.FK__TB_Compro__idUsu__300424B4">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idCom__46E78A0C" Association="Self.FK__TB_Detall__idCom__46E78A0C">
+          <AssociationSet Name="FK__TB_Detall__idCom__32E0915F" Association="Self.FK__TB_Detall__idCom__32E0915F">
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idPro__47DBAE45" Association="Self.FK__TB_Detall__idPro__47DBAE45">
+          <AssociationSet Name="FK__TB_Detall__idPro__33D4B598" Association="Self.FK__TB_Detall__idPro__33D4B598">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Direcc__idUsu__412EB0B6" Association="Self.FK__TB_Direcc__idUsu__412EB0B6">
+          <AssociationSet Name="FK__TB_Direcc__idUsu__2D27B809" Association="Self.FK__TB_Direcc__idUsu__2D27B809">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_Direcciones" EntitySet="TB_Direcciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Produc__idCat__3A81B327" Association="Self.FK__TB_Produc__idCat__3A81B327">
+          <AssociationSet Name="FK__TB_Produc__idCat__267ABA7A" Association="Self.FK__TB_Produc__idCat__267ABA7A">
             <End Role="TB_Categoria" EntitySet="TB_Categoria" />
             <End Role="TB_Producto" EntitySet="TB_Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Tarjet__idUsu__4D94879B" Association="Self.FK__TB_Tarjet__idUsu__4D94879B">
+          <AssociationSet Name="FK__TB_Tarjet__idUsu__398D8EEE" Association="Self.FK__TB_Tarjet__idUsu__398D8EEE">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_Tarjetas" EntitySet="TB_Tarjetas" />
           </AssociationSet>
@@ -284,7 +284,7 @@
           <Property Name="idCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idprod" Type="Int32" />
           <Property Name="cantidad" Type="Int32" />
-          <NavigationProperty Name="TB_Producto" Relationship="Self.FK__TB_Carrit__idpro__4AB81AF0" FromRole="TB_Carrito" ToRole="TB_Producto" />
+          <NavigationProperty Name="TB_Producto" Relationship="Self.FK__TB_Carrit__idpro__36B12243" FromRole="TB_Carrito" ToRole="TB_Producto" />
         </EntityType>
         <EntityType Name="TB_Categoria">
           <Key>
@@ -292,7 +292,7 @@
           </Key>
           <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nomCategoria" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TB_Producto" Relationship="Self.FK__TB_Produc__idCat__3A81B327" FromRole="TB_Categoria" ToRole="TB_Producto" />
+          <NavigationProperty Name="TB_Producto" Relationship="Self.FK__TB_Produc__idCat__267ABA7A" FromRole="TB_Categoria" ToRole="TB_Producto" />
         </EntityType>
         <EntityType Name="TB_ComprobantePago">
           <Key>
@@ -304,8 +304,8 @@
           <Property Name="NombreCli" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaCompra" Type="DateTime" Precision="0" />
           <Property Name="Destinatario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TB_Usuario" Relationship="Self.FK__TB_Compro__idUsu__440B1D61" FromRole="TB_ComprobantePago" ToRole="TB_Usuario" />
-          <NavigationProperty Name="TB_DetalleComprobante" Relationship="Self.FK__TB_Detall__idCom__46E78A0C" FromRole="TB_ComprobantePago" ToRole="TB_DetalleComprobante" />
+          <NavigationProperty Name="TB_Usuario" Relationship="Self.FK__TB_Compro__idUsu__300424B4" FromRole="TB_ComprobantePago" ToRole="TB_Usuario" />
+          <NavigationProperty Name="TB_DetalleComprobante" Relationship="Self.FK__TB_Detall__idCom__32E0915F" FromRole="TB_ComprobantePago" ToRole="TB_DetalleComprobante" />
         </EntityType>
         <EntityType Name="TB_DetalleComprobante">
           <Key>
@@ -316,8 +316,8 @@
           <Property Name="idProducto" Type="Int32" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Cantidad" Type="Int32" />
-          <NavigationProperty Name="TB_ComprobantePago" Relationship="Self.FK__TB_Detall__idCom__46E78A0C" FromRole="TB_DetalleComprobante" ToRole="TB_ComprobantePago" />
-          <NavigationProperty Name="TB_Producto" Relationship="Self.FK__TB_Detall__idPro__47DBAE45" FromRole="TB_DetalleComprobante" ToRole="TB_Producto" />
+          <NavigationProperty Name="TB_ComprobantePago" Relationship="Self.FK__TB_Detall__idCom__32E0915F" FromRole="TB_DetalleComprobante" ToRole="TB_ComprobantePago" />
+          <NavigationProperty Name="TB_Producto" Relationship="Self.FK__TB_Detall__idPro__33D4B598" FromRole="TB_DetalleComprobante" ToRole="TB_Producto" />
         </EntityType>
         <EntityType Name="TB_Direcciones">
           <Key>
@@ -328,7 +328,7 @@
           <Property Name="nomDistrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nomCiudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idUsuario" Type="Int32" />
-          <NavigationProperty Name="TB_Usuario" Relationship="Self.FK__TB_Direcc__idUsu__412EB0B6" FromRole="TB_Direcciones" ToRole="TB_Usuario" />
+          <NavigationProperty Name="TB_Usuario" Relationship="Self.FK__TB_Direcc__idUsu__2D27B809" FromRole="TB_Direcciones" ToRole="TB_Usuario" />
         </EntityType>
         <EntityType Name="TB_Producto">
           <Key>
@@ -338,12 +338,12 @@
           <Property Name="nomProd" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="foto" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="idCategoria" Type="Int32" Nullable="false" />
           <Property Name="stock" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TB_Carrito" Relationship="Self.FK__TB_Carrit__idpro__4AB81AF0" FromRole="TB_Producto" ToRole="TB_Carrito" />
-          <NavigationProperty Name="TB_Categoria" Relationship="Self.FK__TB_Produc__idCat__3A81B327" FromRole="TB_Producto" ToRole="TB_Categoria" />
-          <NavigationProperty Name="TB_DetalleComprobante" Relationship="Self.FK__TB_Detall__idPro__47DBAE45" FromRole="TB_Producto" ToRole="TB_DetalleComprobante" />
+          <NavigationProperty Name="TB_Carrito" Relationship="Self.FK__TB_Carrit__idpro__36B12243" FromRole="TB_Producto" ToRole="TB_Carrito" />
+          <NavigationProperty Name="TB_Categoria" Relationship="Self.FK__TB_Produc__idCat__267ABA7A" FromRole="TB_Producto" ToRole="TB_Categoria" />
+          <NavigationProperty Name="TB_DetalleComprobante" Relationship="Self.FK__TB_Detall__idPro__33D4B598" FromRole="TB_Producto" ToRole="TB_DetalleComprobante" />
         </EntityType>
         <EntityType Name="TB_Tarjetas">
           <Key>
@@ -357,7 +357,7 @@
           <Property Name="fechaExpiracion" Type="DateTime" Precision="0" />
           <Property Name="ccv" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="saldo" Type="Int32" />
-          <NavigationProperty Name="TB_Usuario" Relationship="Self.FK__TB_Tarjet__idUsu__4D94879B" FromRole="TB_Tarjetas" ToRole="TB_Usuario" />
+          <NavigationProperty Name="TB_Usuario" Relationship="Self.FK__TB_Tarjet__idUsu__398D8EEE" FromRole="TB_Tarjetas" ToRole="TB_Usuario" />
         </EntityType>
         <EntityType Name="TB_Usuario">
           <Key>
@@ -371,11 +371,11 @@
           <Property Name="emailverficiado" Type="Boolean" />
           <Property Name="codigoactivacion" Type="Guid" />
           <Property Name="contra" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TB_ComprobantePago" Relationship="Self.FK__TB_Compro__idUsu__440B1D61" FromRole="TB_Usuario" ToRole="TB_ComprobantePago" />
-          <NavigationProperty Name="TB_Direcciones" Relationship="Self.FK__TB_Direcc__idUsu__412EB0B6" FromRole="TB_Usuario" ToRole="TB_Direcciones" />
-          <NavigationProperty Name="TB_Tarjetas" Relationship="Self.FK__TB_Tarjet__idUsu__4D94879B" FromRole="TB_Usuario" ToRole="TB_Tarjetas" />
+          <NavigationProperty Name="TB_ComprobantePago" Relationship="Self.FK__TB_Compro__idUsu__300424B4" FromRole="TB_Usuario" ToRole="TB_ComprobantePago" />
+          <NavigationProperty Name="TB_Direcciones" Relationship="Self.FK__TB_Direcc__idUsu__2D27B809" FromRole="TB_Usuario" ToRole="TB_Direcciones" />
+          <NavigationProperty Name="TB_Tarjetas" Relationship="Self.FK__TB_Tarjet__idUsu__398D8EEE" FromRole="TB_Usuario" ToRole="TB_Tarjetas" />
         </EntityType>
-        <Association Name="FK__TB_Carrit__idpro__4AB81AF0">
+        <Association Name="FK__TB_Carrit__idpro__36B12243">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="0..1" />
           <End Role="TB_Carrito" Type="Self.TB_Carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -387,7 +387,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Produc__idCat__3A81B327">
+        <Association Name="FK__TB_Produc__idCat__267ABA7A">
           <End Role="TB_Categoria" Type="Self.TB_Categoria" Multiplicity="1" />
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -399,7 +399,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Compro__idUsu__440B1D61">
+        <Association Name="FK__TB_Compro__idUsu__300424B4">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -411,7 +411,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idCom__46E78A0C">
+        <Association Name="FK__TB_Detall__idCom__32E0915F">
           <End Role="TB_ComprobantePago" Type="Self.TB_ComprobantePago" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -423,7 +423,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Detall__idPro__47DBAE45">
+        <Association Name="FK__TB_Detall__idPro__33D4B598">
           <End Role="TB_Producto" Type="Self.TB_Producto" Multiplicity="1" />
           <End Role="TB_DetalleComprobante" Type="Self.TB_DetalleComprobante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -435,7 +435,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Direcc__idUsu__412EB0B6">
+        <Association Name="FK__TB_Direcc__idUsu__2D27B809">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="0..1" />
           <End Role="TB_Direcciones" Type="Self.TB_Direcciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -447,7 +447,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TB_Tarjet__idUsu__4D94879B">
+        <Association Name="FK__TB_Tarjet__idUsu__398D8EEE">
           <End Role="TB_Usuario" Type="Self.TB_Usuario" Multiplicity="1" />
           <End Role="TB_Tarjetas" Type="Self.TB_Tarjetas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -468,31 +468,31 @@
           <EntitySet Name="TB_Producto" EntityType="Self.TB_Producto" />
           <EntitySet Name="TB_Tarjetas" EntityType="Self.TB_Tarjetas" />
           <EntitySet Name="TB_Usuario" EntityType="Self.TB_Usuario" />
-          <AssociationSet Name="FK__TB_Carrit__idpro__4AB81AF0" Association="Self.FK__TB_Carrit__idpro__4AB81AF0">
+          <AssociationSet Name="FK__TB_Carrit__idpro__36B12243" Association="Self.FK__TB_Carrit__idpro__36B12243">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_Carrito" EntitySet="TB_Carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Produc__idCat__3A81B327" Association="Self.FK__TB_Produc__idCat__3A81B327">
+          <AssociationSet Name="FK__TB_Produc__idCat__267ABA7A" Association="Self.FK__TB_Produc__idCat__267ABA7A">
             <End Role="TB_Categoria" EntitySet="TB_Categoria" />
             <End Role="TB_Producto" EntitySet="TB_Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Compro__idUsu__440B1D61" Association="Self.FK__TB_Compro__idUsu__440B1D61">
+          <AssociationSet Name="FK__TB_Compro__idUsu__300424B4" Association="Self.FK__TB_Compro__idUsu__300424B4">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idCom__46E78A0C" Association="Self.FK__TB_Detall__idCom__46E78A0C">
+          <AssociationSet Name="FK__TB_Detall__idCom__32E0915F" Association="Self.FK__TB_Detall__idCom__32E0915F">
             <End Role="TB_ComprobantePago" EntitySet="TB_ComprobantePago" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Detall__idPro__47DBAE45" Association="Self.FK__TB_Detall__idPro__47DBAE45">
+          <AssociationSet Name="FK__TB_Detall__idPro__33D4B598" Association="Self.FK__TB_Detall__idPro__33D4B598">
             <End Role="TB_Producto" EntitySet="TB_Producto" />
             <End Role="TB_DetalleComprobante" EntitySet="TB_DetalleComprobante" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Direcc__idUsu__412EB0B6" Association="Self.FK__TB_Direcc__idUsu__412EB0B6">
+          <AssociationSet Name="FK__TB_Direcc__idUsu__2D27B809" Association="Self.FK__TB_Direcc__idUsu__2D27B809">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_Direcciones" EntitySet="TB_Direcciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__TB_Tarjet__idUsu__4D94879B" Association="Self.FK__TB_Tarjet__idUsu__4D94879B">
+          <AssociationSet Name="FK__TB_Tarjet__idUsu__398D8EEE" Association="Self.FK__TB_Tarjet__idUsu__398D8EEE">
             <End Role="TB_Usuario" EntitySet="TB_Usuario" />
             <End Role="TB_Tarjetas" EntitySet="TB_Tarjetas" />
           </AssociationSet>
@@ -563,7 +563,7 @@
           <Property Type="String" Name="nomProd" Nullable="false" MaxLength="70" />
           <Property Type="Decimal" Name="precio" Nullable="false" Precision="19" />
           <Property Type="String" Name="descripcion" Nullable="true" />
-          <Property Type="String" Name="foto" Nullable="true" MaxLength="1024" />
+          <Property Type="Binary" Name="foto" Nullable="true" MaxLength="Max" />
           <Property Type="String" Name="nomCategoria" Nullable="false" MaxLength="20" />
           <Property Type="Int32" Name="stock" Nullable="false" />
         </ComplexType>
@@ -771,7 +771,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

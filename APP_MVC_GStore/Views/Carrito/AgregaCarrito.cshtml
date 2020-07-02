@@ -45,6 +45,8 @@
                     <th> </th>
                     <td>@String.Format("{0:C}", (item.cantidad * item.producto.precio))</td>
                     <th> </th>
+                    <td><img width="60" src="@Url.Action("getImage", "AdminProducto", new { id = item.producto.idProd})" /></td>
+                    <th> </th>
                 </tr>
             }
         }
