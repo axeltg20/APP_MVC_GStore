@@ -157,6 +157,7 @@
     <Content Include="Content\estilos.css" />
     <Content Include="Content\Images\default.png" />
     <Content Include="Content\Images\electron-640x404.jpg" />
+    <Content Include="Content\Images\fondo.jpeg" />
     <Content Include="Content\Images\Lupa.png" />
     <Content Include="Content\Images\rs_fb.png" />
     <Content Include="Content\Images\rs_tw.png" />

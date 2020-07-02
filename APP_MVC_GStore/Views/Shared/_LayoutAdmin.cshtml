@@ -9,7 +9,7 @@
     <link href="~/Content/redes_social.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body style="background-color:#90dcf8">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("GStore", "ListaProductos", "Carrito", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("GStore Mantenimiento", "Index", "AdminCategoria", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-right">
 
@@ -27,6 +27,9 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Categorías", "Index", "AdminCategoria")</li>
                     <li>@Html.ActionLink("Productos", "Index", "AdminProducto")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Cerrar Sesión", "ListaProductos", "Carrito")</li>
                 </ul>
             </div>
         </div>

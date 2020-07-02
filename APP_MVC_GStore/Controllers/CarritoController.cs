@@ -97,13 +97,13 @@ namespace APP_MVC_GStore.Controllers
         }
 
 
-        public ActionResult ListaProductos(string nombre/*, string id*/)
+        public ActionResult ListaProductos(string nombre, int id=1)
         {
             if (nombre == null) { nombre = string.Empty; }
             ViewBag.nombre = nombre;
             //if (id.Equals(null)) { id = string.Empty; }
-            //ViewBag.categoria = new SelectList(db.TB_Categoria, "idCategoria", "nomCategoria", id);
-            var lista = from p in db.TB_Producto where p.nomProd.StartsWith(nombre) /*|| p.idCategoria.Equals(id)*/ select p;
+            ViewBag.categoria = new SelectList(db.TB_Categoria.ToList(), "idCategoria", "nomCategoria", id);
+            var lista = from p in db.TB_Producto where p.nomProd.StartsWith(nombre) && p.idCategoria.Equals(id) select p;
             return View(lista.ToList());
         }
 

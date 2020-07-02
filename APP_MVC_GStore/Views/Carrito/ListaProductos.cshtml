@@ -3,17 +3,17 @@
     ViewBag.Title = "ListaProductos";
 }
 
-<h2>Bienvenido a GStore!</h2>
+<h1 style="background-color: aliceblue">Bienvenido a GStore!</h1>
 <link rel="stylesheet" type="text/css" href="~/Content/estilos.css" media="screen" />
 <br />
 @using (Html.BeginForm())
 {
 <div class="buscador">
-    <strong>Ingrese Nombre del producto :</strong>
+    <strong style="background-color:aliceblue">Ingrese Nombre del producto :</strong>
     <input type="text" name="nombre" value="@ViewBag.nombre" />
-    @*<br />
-        <strong>Seleccione Categoria :</strong>
-        @Html.DropDownList("id", (SelectList)ViewBag.categoria)*@
+    <br />
+        <strong style="background-color:aliceblue">Seleccione Categoria :</strong>
+        @Html.DropDownList("id", (SelectList)ViewBag.categoria)
     <input type="image" value="Consultar" src="~/Content/Images/Lupa.png" class="btnBuscar" />
     <br />
 </div>
@@ -22,18 +22,19 @@
 
 
 
-<table class="table">
+<table class="table table-bordered table-striped table-hover table-condensed" style="background-color:snow">
     <tr>
         <th class="hidden">
             @Html.DisplayNameFor(model => model.idProd)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.foto)
+            
         </th>
         <th>
-            <span>Dados</span>
+            <span>Nombre</span>
         </th>
-        <th></th>
+        <th>Descripción</th>
+        <th></th>  
     </tr>
 
     @foreach (var item in Model)
@@ -51,18 +52,14 @@
                 <span id="nombreProd">@Html.DisplayFor(modelItem => item.nomProd)</span><br />
             </td>
             <td>
-                <span>@Html.DisplayFor(modelItem => item.precio)</span><br />
+                <span>S/. @Html.DisplayFor(modelItem => item.precio)</span><br />
                 <span>@Html.DisplayFor(modelItem => item.descripcion)</span><br />
                 <span>@Html.DisplayFor(modelItem => item.TB_Categoria.nomCategoria)</span><br />
-                <span>@Html.DisplayFor(modelItem => item.stock)</span><br />
+                <span>Cantidad: @Html.DisplayFor(modelItem => item.stock)</span><br />
             </td>
             <td>
                 <a href="#" class="btn btn-danger" id="Acarrito">Agregar al carrito</a>
             </td>
-            @*<td>
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>*@
         </tr>
     }
 </table>

@@ -89,6 +89,11 @@ namespace APP_MVC_GStore.Controllers
                 cookie.Expires = System.DateTime.Now.AddMinutes(timeout);
                 cookie.HttpOnly = true;
                 Response.Cookies.Add(cookie);
+                //Enviar al CRUD de productos en caso sea administrador
+                if (login.Correo.Equals("admin@gmail.com"))
+                {
+                    return RedirectToAction("Index", "AdminCategoria");
+                }
                 return RedirectToAction("Seguridad", "Registro");
             }
             else
@@ -106,7 +111,6 @@ namespace APP_MVC_GStore.Controllers
         /*Detector de correos existentes*/
         public bool EmailExistente(string correo)
         {
-            //var IsCheck = db.TB_Usuario.Where(x => x.email == correo).FirstOrDefault();
             var check = db.TB_Usuario.Where(x => x.email == correo).FirstOrDefault();
             return check != null;
         }
